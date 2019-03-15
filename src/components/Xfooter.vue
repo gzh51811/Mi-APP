@@ -1,6 +1,6 @@
 <template>
   <van-tabbar v-model="active" active-color="#ff6700">
-    <van-tabbar-item v-for="(page,idx) in pages" :key="idx" :icon="page.icon" >标签</van-tabbar-item>
+    <van-tabbar-item v-for="(page,idx) in pages" :key="idx" :icon="page.icon" :to="page.name">{{page.text}}</van-tabbar-item>
   </van-tabbar>
 </template>
 <script>
