@@ -8,9 +8,7 @@ import Tap from '../pages/Tap.vue'
 import Find from '../pages/Find.vue'
 import Cart from '../pages/Cart.vue'
 import Mine from '../pages/Mine.vue'
-import Login from '../pages/Login.vue'
-import List from '../pages/List.vue'
-import Sousuo from '../pages/Sousuo.vue'
+import Details from '../pages/Details.vue';
 
 let router = new VueRouter({
     routes:[
@@ -22,7 +20,7 @@ let router = new VueRouter({
             path: '/home',
             name: 'Home',
             component: Home,
-            meta:{
+            meta: {
                 showFoot: true
             }
         },
@@ -30,7 +28,7 @@ let router = new VueRouter({
             path: '/tap',
             name: 'Tap',
             component: Tap,
-            meta:{
+            meta: {
                 showFoot: true
             }
         },
@@ -38,7 +36,7 @@ let router = new VueRouter({
             path: '/find',
             name: 'Find',
             component: Find,
-            meta:{
+            meta: {
                 showFoot: true
             }
         },
@@ -46,33 +44,23 @@ let router = new VueRouter({
             path: '/cart',
             name: 'Cart',
             component: Cart,
-            meta:{
-                showFoot: true
+            meta: {
+                showFoot: false
             }
         },
         {
             path: '/mine',
             name: 'Mine',
-            component: Mine
-        },
-        {
-            path: '/login',
-            name: 'Login',
-            component: Login
-        },
-        {
-            path: '/list',
-            name: 'List',
-            component: List,
-            meta:{
-                showFoot: false
+            component: Mine,
+            meta: {
+                showFoot: true
             }
         },
         {
-            path: '/sousuo',
-            name: 'Sousuo',
-            component: Sousuo,
-            meta:{
+            path: '/details',
+            name: 'Details',
+            component: Details,
+            meta: {
                 showFoot: false
             }
         }

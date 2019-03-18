@@ -11,20 +11,20 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
 
-//分类页
-import { NavBar } from 'vant';
-Vue.use(NavBar);
-import { Badge, BadgeGroup } from 'vant';
-Vue.use(Badge);
-Vue.use(BadgeGroup);
-import { Cell, CellGroup } from 'vant';
-Vue.use(Cell).use(CellGroup);
-import { Icon } from 'vant';
-Vue.use(Icon);
+
 
 
 
 import Xfooter from "./components/Xfooter.vue"
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
+import Xfooter from "./components/Xfooter.vue";
+
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+
 export default {
   components: {
     Xfooter
