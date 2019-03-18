@@ -3,11 +3,9 @@
     <div class="logo">
       <img src="../assets/logo.png" width="100%">
     </div>
-    <div class="txt" @click="tosousuo">
-      <input placeholder="请输入搜索商品" class="stxt" type="text" v-model="value">
-    </div>
+      <input @click="tosousuo" placeholder="请输入搜索商品" class="stxt" type="text" v-model="value">
     <div class="icon">
-      <van-icon name="manager"/>
+      <van-icon class="icon" name="manager"/>
     </div>
   </div>
 </template>
@@ -27,28 +25,30 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@import "../styles/_mixin.scss";
 .search {
   display: flex;
   background: #f2f2f2;
   justify-content: space-between;
-  height: 40px;
-  padding: 0 10px;
+  height:w(40px) ;
+  padding: 0 w(10px);
   align-items: center;
   /* width: 100%; */
 }
 .logo {
-  width: 20px;
-}
-.txt {
-  width: 70%;
+  width: w(20px);
+  height: w(70px);
 }
 .stxt{
-  width: 100%;
+  width: 70%;
   border: none;
-  padding-left: 10px;
-  font-size: 12px;
-  height: 30px;
+  padding-left: w(10px);
+  font-size: w(12px);
+  height: w(30px);
+}
+.icon{
+  font-size: 20px;
 }
 </style>
 

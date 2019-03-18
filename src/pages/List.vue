@@ -1,9 +1,9 @@
 <template>
     <div>
         <header>
-            <van-icon class="arrow-left" name="arrow-left" style="font-size:29px" />
+            <van-icon class="arrow-left" name="arrow-left" style="font-size:29px" @click="gotoback"/>
             <div class="listgoods">{{listgoods}}</div>
-             <van-icon class="search" name="search" style="font-size:29px" />
+             <van-icon class="search" name="search" style="font-size:29px" @click="sousuo"/>
         </header>
         <ul class="listul">
             <li>
@@ -43,6 +43,14 @@ export default {
     data(){
         return{
             listgoods:"商品列表"
+        }
+    },
+    methods:{
+        gotoback(){
+            this.$router.back();
+        },
+        sousuo(){
+            this.$router.push('/sousuo');
         }
     }
 }

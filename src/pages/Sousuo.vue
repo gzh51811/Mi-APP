@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="search">
-      <van-icon name="arrow-left" @click="gotoback"/>
-      <div class="txt">
-        <input placeholder="请输入搜索商品" class="stxt" type="text" v-model="value">
-      </div>
-      <div class="icon">
-        搜索
+      <van-icon class="icon" name="arrow-left" @click="gotoback"/>
+      
+        <input  placeholder="请输入搜索商品" class="stxt" type="text" v-model="value">
+     
+      <div >
+          <p class="icon">搜索</p>
       </div>
     </div>
     <div class="hot">
@@ -41,32 +41,34 @@ export default {
     }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@import "../styles/_mixin.scss";
 .search {
   display: flex;
   background: #f2f2f2;
   justify-content: space-between;
-  height: 40px;
-  padding: 0 10px;
+  height: w(40px);
+  padding: 0 w(10px);
   align-items: center;
 }
-.txt {
-  width: 70%;
+.icon{
+  font-size: w(20px);
 }
 .stxt{
-  width: 100%;
+  width: 70%;
   border: none;
-  padding-left: 10px;
-  font-size: 12px;
-  height: 30px;
+  padding-left: w(10px);
+  font-size: w(12px);
+  height: w(30px);
 }
 .hot{
-    padding: 10px;
+    padding: w(10px);
 }
+
 .hotss{
-    height: 30px;
+    height: w(30px);
     width: 100%;
-    font-size: 14px;
+    font-size: w(14px);
 }
 </style>
 

@@ -6,6 +6,7 @@
         <router-link to="Detail">
           <div>
               <img
+              class="img"
               :src="item.imgurl"
               width="100%"
               height="50%"
@@ -47,15 +48,16 @@ export default {
   
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@import "../styles/_mixin.scss";
 #shop {
-  margin-bottom: 50px;
+  margin-bottom: w(50px);
 }
 #shop .header {
-  height: 80px;
-  font-size: 20px;
+  height: w(80px);
+  font-size: w(20px);
   text-align: center;
-  line-height: 80px;
+  line-height: w(80px);
   color: blueviolet;
   background: #f2f2f2;
 }
@@ -65,15 +67,17 @@ export default {
 }
 #shop .list .list-item {
   width: 48%;
-  height: 270px;
   float: left;
   margin: 1%;
   background: #e8c1f1;
 }
+.img{
+  height: w(146.4px)
+}
 .name,
 .price,
 .tip {
-  font-size: 14px;
+  font-size: w(14px);
   text-align: center;
   color: #333;
 }
@@ -82,7 +86,7 @@ export default {
 }
 .tip {
   color: #3c3c3c;
-  font-size: 12px;
+  font-size: w(12px);
 }
 </style>
 
