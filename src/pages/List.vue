@@ -1,6 +1,5 @@
 <template>
     <div>
-<<<<<<< HEAD
         <header>
             <van-icon class="arrow-left" name="arrow-left" style="font-size:29px" />
             <div class="listgoods">{{listgoods}}</div>
@@ -37,14 +36,10 @@
                 <p class="price">￥69</p>
             </li>
         </ul>   
-=======
-        列表
->>>>>>> a0d871f94e2df1eee7767e7216c28eafcd762700
     </div>
 </template>
 <script>
 export default {
-<<<<<<< HEAD
     data(){
         return{
             listgoods:"商品列表"
@@ -121,8 +116,3 @@ export default {
 </style>
 
 
-=======
-    
-}
-</script>
->>>>>>> a0d871f94e2df1eee7767e7216c28eafcd762700

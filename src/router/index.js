@@ -8,14 +8,10 @@ import Tap from '../pages/Tap.vue'
 import Find from '../pages/Find.vue'
 import Cart from '../pages/Cart.vue'
 import Mine from '../pages/Mine.vue'
-<<<<<<< HEAD
 import Login from '../pages/Login.vue'
-import List from '../pages/List.vue'
-=======
 import List from '../pages/List.vue'
 import Sousuo from '../pages/Sousuo.vue'
 
->>>>>>> a0d871f94e2df1eee7767e7216c28eafcd762700
 let router = new VueRouter({
     routes:[
         {
@@ -57,23 +53,12 @@ let router = new VueRouter({
         {
             path: '/mine',
             name: 'Mine',
-<<<<<<< HEAD
             component: Mine
         },
         {
             path: '/login',
             name: 'Login',
             component: Login
-        },
-        {
-            path:'/list',
-            name:'List',
-            component:List
-=======
-            component: Mine,
-            meta:{
-                showFoot: true
-            }
         },
         {
             path: '/list',
@@ -90,7 +75,6 @@ let router = new VueRouter({
             meta:{
                 showFoot: false
             }
->>>>>>> a0d871f94e2df1eee7767e7216c28eafcd762700
         }
     ]
 })
