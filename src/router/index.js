@@ -19,32 +19,50 @@ let router = new VueRouter({
         {
             path: '/home',
             name: 'Home',
-            component: Home
+            component: Home,
+            meta: {
+                showFoot: true
+            }
         },
         {
             path: '/tap',
             name: 'Tap',
-            component: Tap
+            component: Tap,
+            meta: {
+                showFoot: true
+            }
         },
         {
             path: '/find',
             name: 'Find',
-            component: Find
+            component: Find,
+            meta: {
+                showFoot: true
+            }
         },
         {
             path: '/cart',
             name: 'Cart',
-            component: Cart
+            component: Cart,
+            meta: {
+                showFoot: false
+            }
         },
         {
             path: '/mine',
             name: 'Mine',
-            component: Mine
+            component: Mine,
+            meta: {
+                showFoot: true
+            }
         },
         {
             path: '/details',
             name: 'Details',
-            component: Details
+            component: Details,
+            meta: {
+                showFoot: false
+            }
         }
     ]
 })
