@@ -38,7 +38,7 @@ export default {
 }
 .logo {
   width: w(20px);
-  height: w(70px);
+  height: w(30px);
 }
 .stxt{
   width: 70%;
