@@ -12,17 +12,17 @@
 
         <section class="shop">
             <ul>
-                <li>
+                <li @click="goHome">
                     <van-icon name="wap-home" size=".586667rem"/>
                     <p>首页</p>
                 </li>
-                <li>
+                <li @click="goCart">
                     <van-icon name="shopping-cart-o" size=".586667rem"/>
                     <p>购物车</p>
                     <div>5</div>
                 </li>
                 <li>
-                    <span>加入购物车</span>
+                    <span @click="addCart(goods.item_id)">加入购物车</span>
                 </li>
             </ul>
         </section>
@@ -86,6 +86,7 @@
             <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/31f17bf02bdc72680b44c6c062bf1e19.jpg?f=webp&w=1080&h=1669&bg=FFFFFF" alt="">
             <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/736b20bcbd6e140dac94627cd0f106c5.jpg?f=webp&w=1080&h=1634&bg=FFFFFF" alt="">
         </section>
+
     </div>
 </template>
 
@@ -109,7 +110,36 @@ export default {
     },
 
     methods:{
-        
+        goHome(){
+            this.$router.push('/home');
+        },
+
+        goCart(){
+            this.$router.push('/cart');
+        },
+
+        addCart(id){
+            console.log(id);
+        },
+
+        async getData(){
+            // 获取id
+            let {id:item_id} = this.$route.query;
+
+            let {data} = await this.$axios.get('/',{
+                params: {
+                    item_id,
+                }
+            })
+
+            // console.log(info)
+
+            // this.goodsinfo = info
+        },
+    },
+
+    mounted(){
+        this.getData();
     }
 }
 </script>

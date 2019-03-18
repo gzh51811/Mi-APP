@@ -8,7 +8,7 @@
 
         <section class="goLogin">
             <div><span>登录后享受更多优惠</span></div>
-            <div><span>去登录</span></div>
+            <div @click="goLogin"><span>去登录</span></div>
             <div><van-icon name="arrow" size="0.3584rem"/></div>
         </section>
 
@@ -17,7 +17,7 @@
             <div>
                 <span><van-icon name="shopping-cart-o" size="0.8378rem"/></span>
                 <span>购物车还是空的</span>
-                <span>去逛逛</span>
+                <span @click="goGuang">去逛逛</span>
             </div>
             <div></div>
         </section>
@@ -31,9 +31,9 @@
                         <p>{{item.item_name}}</p>
                         <p>售价：<span>{{item.item_price}}</span>元</p>
                         <p>
-                           <span><i class="el-icon-minus"></i></span>
-                           <input type="text">
-                           <span><i class="el-icon-plus"></i></span>
+                           <span @click="delNum(idx,num)"><i class="el-icon-minus"></i></span>
+                           <input type="text" :value="num">
+                           <span @click="addNum(idx,num)"><i class="el-icon-plus"></i></span>
                         </p>
                     </div>
                     <div><van-icon class="com2" name="delete" size=".64rem"/></div>
@@ -48,7 +48,7 @@
         <section id="youlike">
             <ul class="youlike_goods">
                 <li v-for="item in likes" :key="item.item_id">
-                    <img :src="item.item_url" alt="">
+                    <img @click="goDetails(item.item_id)" :src="item.item_url" alt="">
                     <div>
                         <p>{{item.item_name}}</p>
                         <p>￥{{item.item_price}}</p>
@@ -63,8 +63,8 @@
                     <p>共<span>2</span>件 &nbsp;<span>金额：</span></p>
                     <p><span>1999</span> 元</p>
                 </li>
-                <li><a href="###">继续购物</a></li>
-                <li><a href="###">去结算</a></li>
+                <li @click="goBuy"><span>继续购物</span></li>
+                <li><span>去结算</span></li>
             </ul>
         </div>
     </div>
@@ -76,6 +76,7 @@ export default {
     data(){
         return {
             checked: true,
+            num:1,
             likes:[
                 {
                     item_id: 1001,
@@ -106,7 +107,6 @@ export default {
                     item_desc: '50%混合谷物+50%果蔬及坚果 【此商品不参与满150元包邮活动】'
                 }
             ],
-
         }
     },
 
@@ -116,7 +116,29 @@ export default {
     },
 
     methods:{
+        goGuang(){this.$router.push('/home');},
+        goLogin(){this.$router.push('/login');},
+        goBuy(){this.$router.push('/tap');},
 
+        addNum(idx,num){
+            num ++;
+            this.num = num;
+        },
+
+        delNum(idx,num){
+            num --;
+            if(num <= 1){
+                this.num = 1;
+            }else{
+                this.num = num;
+            }
+        },
+
+        goDetails(id){
+            this.$router.push({path:'/details',query:{id}});
+        }
+        
+        
     }
 
 }
@@ -368,18 +390,16 @@ export default {
                 &:nth-child(2){
                     background-color: #f4f4f4;
                     font-size: .4rem;
-                    a{
+                    span{
                         color: #333;
-                        text-decoration: none;
                         line-height: 1.386667rem;
                     }
                 }
                 &:nth-child(3){
                     background-color: #ff6700;
                     font-size: .4rem;
-                    a{
+                    span{
                         color: #fff;
-                        text-decoration: none;
                         line-height: 1.386667rem;
                     }
                 }
