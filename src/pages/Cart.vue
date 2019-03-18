@@ -5,11 +5,13 @@
             <div><span>购物车</span></div>
             <div><van-icon name="search" size="0.8378rem"/></div>
         </header>
+
         <section class="goLogin">
             <div><span>登录后享受更多优惠</span></div>
             <div><span>去登录</span></div>
             <div><van-icon name="arrow" size="0.3584rem"/></div>
         </section>
+
         <section class="kong">
             <div></div>
             <div>
@@ -23,7 +25,7 @@
         <main id="main">
             <ul class="list">
                 <li class="list-item" v-for="(item,idx) in likes" :key="item.item_id">
-                    <div><input class="com" type="checkbox" :value="idx"></div>
+                    <div><van-checkbox class="com" v-model="checked" checked-color="#ff5722"></van-checkbox></div>
                     <div><img :src="item.item_url" alt=""></div>
                     <div>
                         <p>{{item.item_name}}</p>
@@ -34,7 +36,7 @@
                            <span><i class="el-icon-plus"></i></span>
                         </p>
                     </div>
-                    <div><van-icon class="com2" name="delete" size=".693333rem"/></div>
+                    <div><van-icon class="com2" name="delete" size=".64rem"/></div>
                 </li>
             </ul>
         </main>
@@ -73,6 +75,7 @@ import axios from 'axios';
 export default {
     data(){
         return {
+            checked: true,
             likes:[
                 {
                     item_id: 1001,
@@ -110,6 +113,10 @@ export default {
     created(){
         let likes = axios.get("/",{});
         console.log(this.likes);
+    },
+
+    methods:{
+
     }
 
 }
@@ -242,15 +249,16 @@ export default {
                                     height: .586667rem;
                                     border: 1px solid #ccc;
                                     color: #3c3c3c;
-                                    background-color: rgb(235, 229, 229);
+                                    background-color: rgb(248, 245, 245);
                                     text-align: center;
-                                    vertical-align: top;
+                                    vertical-align: middle;
                                 }
                                 i{
-                                    font-size: .426667rem;
+                                    font-size: .373333rem;
                                     font-weight: bold;
                                     text-align: center;
                                     vertical-align: middle;
+                                    color: #918f8f;
                                 }
                                 input{
                                     display: inline-block;
@@ -268,6 +276,7 @@ export default {
                         text-align: center;
                         .com2{
                             margin-top: 1.706667rem;
+                            color: #adadad;
                         }
                     }
                 }
@@ -339,7 +348,8 @@ export default {
                 height: 1.386667rem;
                 text-align: center;
                 &:nth-child(1){
-                    margin-top: .186667rem;
+                    padding-top: .16rem;
+                    background: #fff;
                     p{
                         &:nth-child(1){
                             color: #999;

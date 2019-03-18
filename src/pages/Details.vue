@@ -19,6 +19,7 @@
                 <li>
                     <van-icon name="shopping-cart-o" size=".586667rem"/>
                     <p>购物车</p>
+                    <div>5</div>
                 </li>
                 <li>
                     <span>加入购物车</span>
@@ -105,6 +106,10 @@ export default {
                '//i8.mifile.cn/b2c-mimall-media/a4d88530d1e6c0882345e44015c3cac2.jpg'
            ]
         }
+    },
+
+    methods:{
+        
     }
 }
 </script>
@@ -173,6 +178,17 @@ export default {
                     color: rgba(0,0,0,.54);
                     width: 20%;
                     margin-top: .213333rem;
+                    position: relative;
+                    div{
+                        position: absolute;
+                        width: .386667rem;
+                        height: .386667rem;
+                        background: #ed4d41;
+                        color: #fff;
+                        top: -10%;
+                        left: 55%;
+                        border-radius: 50%;
+                    }
                 }
                 &:nth-child(3){
                     width: 60%;
@@ -229,7 +245,7 @@ export default {
                         border: 1px solid #e5e5e5;
                         border-radius: .266667rem;
                         background-color: #fafafa;
-                        color: #3c3c3c;
+                        color: rgba(0,0,0,.87);
                         &:nth-child(2){
                             margin-top: .186667rem;
                         }
@@ -254,6 +270,7 @@ export default {
                     .spanl{
                         float: right;
                         margin-right: .16rem;
+                        color: hsla(0,0%,64%,.8); 
                     }
                     .zeng{
                         border: 1px solid #ff6700;
