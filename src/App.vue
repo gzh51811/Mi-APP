@@ -10,6 +10,20 @@ import Vue from "vue"
 import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
+
+//分类页
+import { NavBar } from 'vant';
+Vue.use(NavBar);
+import { Badge, BadgeGroup } from 'vant';
+Vue.use(Badge);
+Vue.use(BadgeGroup);
+import { Cell, CellGroup } from 'vant';
+Vue.use(Cell).use(CellGroup);
+import { Icon } from 'vant';
+Vue.use(Icon);
+
+
+
 import Xfooter from "./components/Xfooter.vue"
 export default {
   components: {
@@ -24,3 +38,4 @@ export default {
   padding: 0;
 }
 </style>
+
