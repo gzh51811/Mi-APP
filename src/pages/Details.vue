@@ -1,0 +1,12 @@
+<template>
+    <div class="details">
+        详情页
+    </div>
+</template>
+
+
+<script>
+export default {
+    
+}
+</script>

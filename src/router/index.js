@@ -8,6 +8,7 @@ import Tap from '../pages/Tap.vue'
 import Find from '../pages/Find.vue'
 import Cart from '../pages/Cart.vue'
 import Mine from '../pages/Mine.vue'
+import Details from '../pages/Details.vue';
 
 let router = new VueRouter({
     routes:[
@@ -39,6 +40,11 @@ let router = new VueRouter({
             path: '/mine',
             name: 'Mine',
             component: Mine
+        },
+        {
+            path: '/details',
+            name: 'Details',
+            component: Details
         }
     ]
 })
