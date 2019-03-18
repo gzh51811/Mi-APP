@@ -23,6 +23,9 @@ Vue.prototype.$axios = axios;
 export default {
   components: {
     Xfooter
+  },
+  mounted(){
+    console.log(this.$route)
   }
 }
 </script>

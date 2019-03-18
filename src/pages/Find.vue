@@ -1,6 +1,9 @@
 <template>
     <div>
-        发现
+        <van-tabs v-model="active">
+            <van-tab title="标签 1">内容 1</van-tab>
+            <van-tab title="标签 2">内容 2</van-tab>
+        </van-tabs>
     </div>
 </template>
 <script>
