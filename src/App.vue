@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <router-view></router-view>
-      <Xfooter></Xfooter>
+      <Xfooter v-show="$route.meta.showFoot"></Xfooter>
   </div>
 </template>
 
@@ -28,6 +28,9 @@ import Xfooter from "./components/Xfooter.vue"
 export default {
   components: {
     Xfooter
+  },
+  mounted(){
+    console.log(this.$route)
   }
 }
 </script>

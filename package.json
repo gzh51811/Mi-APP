@@ -8,9 +8,21 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "store": "^2.0.12",
+=======
+    "postcss": "^7.0.14",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-pxtorem": "^4.0.1",
+    "postcss-url": "^8.0.0",
+    "sass": "^1.17.2",
+    "sass-loader": "^7.1.0",
+    "axios": "^0.18.0",
+>>>>>>> 02b2d5156413cf2e3db23e76ddf707b705e3582f
     "vant": "^1.6.9",
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "weui": "^1.1.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
