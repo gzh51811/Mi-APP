@@ -16,9 +16,9 @@
                     {{item.text}}
                 </li>
            </ul>
+           {{goodslist}}
        </div>
-        <Tabright></Tabright>
-
+        <Tabright :goodslist="goodslist"></Tabright>
     </div>
 </template>
 <script>
@@ -28,6 +28,7 @@ import Tabright from '../components/Tabright.vue'
 export default {
   data() {
     return {
+        goodslist:[],
       items:[
           {
               text:"新品",
@@ -110,16 +111,31 @@ export default {
     };
   },
   methods:{
-    change(idx,text){
+    async change(idx,text){
         this.active = idx; 
-        // console.log(idx,text)
         if(this.$store.state.list.indexOf(text)==-1){
+            //发起请求
+            // console.log(text)
+            
+             let data = await this.$axios.get("http://localhost:8888/setting/Tabright",{
+                params:{
+                    style:text
+                }
+            }).then(res=>{
+                // console.log(res)
+                return res.data;
+               
+            })
+             this.goodslist= data;
              this.$store.state.list=[];
             this.$store.state.list.push(text,idx) 
+             console.log(this.goodslist)
         }
-       
+        
     }
   },
+  
+
     components:{
         Tabright
     }
@@ -147,7 +163,7 @@ display: none;
 }
 .leftli{
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     height: 50px;
     line-height: 50px;
 }

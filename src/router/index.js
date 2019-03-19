@@ -14,6 +14,8 @@ import Sousuo from '../pages/Sousuo.vue'
 import Details from '../pages/Details.vue';
 import Denglu from '../pages/Denglu.vue';
 
+
+
 let router = new VueRouter({
     routes:[
         {
@@ -96,6 +98,13 @@ let router = new VueRouter({
             path: '/details',
             name: 'Details',
             component: Details,
+            meta: {
+                showFoot: false
+            }
+        },{
+            path: '/list',
+            name: 'List',
+            component: List,
             meta: {
                 showFoot: false
             }
