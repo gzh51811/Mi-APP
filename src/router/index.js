@@ -9,6 +9,8 @@ import Find from '../pages/Find.vue'
 import Cart from '../pages/Cart.vue'
 import Mine from '../pages/Mine.vue'
 import Details from '../pages/Details.vue';
+import List from '../pages/List.vue';
+
 
 let router = new VueRouter({
     routes:[
@@ -60,6 +62,13 @@ let router = new VueRouter({
             path: '/details',
             name: 'Details',
             component: Details,
+            meta: {
+                showFoot: false
+            }
+        },{
+            path: '/list',
+            name: 'List',
+            component: List,
             meta: {
                 showFoot: false
             }
