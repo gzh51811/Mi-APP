@@ -1,44 +1,27 @@
 <template>
+  <!-- import { loadavg } from 'os'; -->
   <div>
     <div class="logo">
       <img :src="logoimg">
       <p>{{title}}</p>
     </div>
-    <div class="namebox">
+    <div class="phonebox">
       <van-cell-group>
         <van-field
-          v-model="uname"
+          v-model="username"
           required
           clearable
           label="用户名"
           right-icon="question-o"
           placeholder="请输入用户名"
           @click-right-icon="$toast('用户名')"
-          :error-message="utip"
         />
-        <van-field
-          v-model="pswd"
-          type="password"
-          label="密码"
-          placeholder="请输入密码"
-          required
-          :error-message="ptip"
-        />
-        <van-field
-          v-model="repswd"
-          type="password"
-          label="确认密码"
-          placeholder="请再次输入密码"
-          required
-          :error-message="rptip"
-        />
-        <van-field v-model="sms" center clearable label="短信验证码" placeholder="请输入短信验证码">
-          <van-button slot="button" size="small" type="primary">发送验证码</van-button>
-        </van-field>
+        <van-field v-model="password" type="password" label="密码" placeholder="请输入密码" required/>
       </van-cell-group>
     </div>
-    <input type="submit" value="立即注册" class="malogin" @click="login">
-    <p class="namepass" v-text="loadopen" @click="todenglu"></p>
+    <input type="submit" value="立即登录" class="malogin" @click="denglu">
+    <p class="namepass" @click="tologin" v-text="logoname"></p>
+
     <fieldset disabled="disabled">
       <legend align="center">其他方式登录</legend>
     </fieldset>
@@ -61,56 +44,51 @@ export default {
   components: {},
   data() {
     return {
-      utip: "",
-      ptip: "",
-      rptip: "",
-      uname: "",
-      sms: "",
-      pswd: "",
-      repswd: "",
+      username: "",
+      password: "",
       logoimg:
         "https://account.xiaomi.com/static/res/11eb7d1/account-static/respassport/acc-2014/img/2018/milogo@2x.png",
       title: "小米账号登录",
       show: true,
-      loadopen: "去登录"
+      logoname: "去注册",
+      loadopen: "去登录",
     };
   },
   methods: {
-    todenglu() {
-      this.$router.push("/denglu");
+    tologin() {
+      this.$router.push('/login');
     },
-    async login() {
+    async denglu() {
       if (this.uname == "") {
         this.utip = "用户名不能为空";
       } else {
         this.utip = "";
       }
       if (this.pswd == "") {
-        this.ptip = "密码不能为空";
+        this.ptip = '密码或用户名错误';
       } else {
         this.ptip = "";
-      }
-      if (this.pswd != this.repswd) {
-        this.rptip = "两次密码输入不同";
-      } else {
-        this.rptip = "";
       }
       if (this.uname != "" && this.pswd != "" && this.pswd === this.repswd) {
         let data = await this.$axios({
           method: "post",
-          headers: { "content-type": "application/x-www-form-urlencoded" }, //局部更改
-          url: "http://localhost:8888/setting/zhuce",
+          headers: { "content-type": "application/x-www-form-urlencoded" },//局部更改
+          url: "http://localhost:8888/setting/loginUser",
           data: this.$qs.stringify({
-            uname: this.uname,
-            password: this.pswd
+            uname: this.username,
+            password: this.password
           })
         }).then(res => {
-          return res.data;
+          return res.data.status
         });
-        if (data === "注册成功") {
-          this.$toast.success("注册成功，快去登录吧");
-        } else {
-          this.$toast.fail(data);
+        if(data === 'success'){
+          this.$toast.success('登陆成功');
+          setTimeout(()=>{
+            this.$router.push('/mine')
+          },1000)
+          console.log(this)
+        }else{
+          this.$toast.fail('登陆失败');
         }
       }
     }
@@ -179,10 +157,3 @@ fieldset {
   }
 }
 </style>
-
-
-      
- 
-
-
-

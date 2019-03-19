@@ -2,8 +2,7 @@
   <div id="shop">
     <div class="header">精品热卖</div>
     <ul class="list">
-      <li class="list-item" v-for="(item,idx) in list" :key="idx">
-        <router-link to="Detail">
+      <li class="list-item" v-for="(item,idx) in list" :key="idx" @click="todetails">
           <div>
               <img
               class="img"
@@ -18,7 +17,6 @@
               <van-button type="danger" size="small" style="margin-left:30%">立即购买</van-button>
             </div>
           </div>
-        </router-link>
       </li>
     </ul>
   </div>
@@ -31,6 +29,13 @@ export default {
     }
   },
   props:['tap'],
+  methods:{
+    todetails(){
+      this.$router.push({params:{
+        
+      }})
+    }
+  },
  async mounted() {
   let data = await this.$axios
       .get("http://localhost:8888/setting/findUser", {

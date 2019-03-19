@@ -33,7 +33,11 @@
 </template>
 <script>
 export default {
-    
+    methods:{
+        toLogin(){
+            this.$router.push('/login')
+        }
+    }
 }
 </script>
 <style scoped>

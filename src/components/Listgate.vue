@@ -1,8 +1,8 @@
 <template>
   <div id="gate">
-    <router-link class='gate' to="List" v-for="(gate,idx) in gates[0].tuijian" :key="idx" >
+    <p class='gate' v-for="(gate,idx) in gates[0].tuijian" :key="idx" @click="toList">
       <img :src="gate" width="100%">
-    </router-link>
+    </p>
   </div>
 </template>
 <script>
@@ -21,6 +21,14 @@ export default {
         }
       ]
     };
+  },
+  props:['tap'],
+  methods:{
+    toList(){
+      let type = this.tap.type;
+      this.$router.push({name:'List',params:{type}})
+
+    }
   }
 };
 </script>

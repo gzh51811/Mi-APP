@@ -24,7 +24,7 @@
 
         <main id="main">
             <ul class="list">
-                <li class="list-item" v-for="(item,idx) in likes" :key="item.item_id">
+                <li class="list-item" v-for="item in likes" :key="item.item_id">
                     <div><van-checkbox class="com" v-model="checked" checked-color="#ff5722"></van-checkbox></div>
                     <div><img :src="item.item_url" alt=""></div>
                     <div>

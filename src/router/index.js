@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 // import App from '../App.vue'
 import Home from '../pages/Home.vue'
+import List from '../pages/List.vue'
 import Tap from '../pages/Tap.vue'
 import Find from '../pages/Find.vue'
 import Cart from '../pages/Cart.vue'
@@ -11,6 +12,7 @@ import Mine from '../pages/Mine.vue'
 import Login from '../pages/Login.vue'
 import Sousuo from '../pages/Sousuo.vue'
 import Details from '../pages/Details.vue';
+import Denglu from '../pages/Denglu.vue';
 
 let router = new VueRouter({
     routes:[
@@ -59,9 +61,25 @@ let router = new VueRouter({
             }
         },
         {
+            path: '/list?type=:type',
+            name: 'List',
+            component: List,
+            meta: {
+                showFoot: false
+            }
+        },
+        {
             path: '/login',
             name: 'Login',
             component: Login,
+            meta: {
+                showFoot: false
+            }
+        },
+        {
+            path: '/denglu',
+            name: 'Denglu',
+            component: Denglu,
             meta: {
                 showFoot: false
             }

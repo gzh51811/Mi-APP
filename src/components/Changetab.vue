@@ -2,7 +2,7 @@
   <van-tabs background="#f2f2f2" title-active-color="#ff6700" color="#ff6700" lazy-render>
     <van-tab v-for="(tab,idx) in tabs" :key="idx" :title="tab.tab">
       <Banner :tap='tab'></Banner>
-      <Listgate></Listgate>
+      <Listgate :tap='tab'></Listgate>
       <Shop :tap='tab'></Shop>
     </van-tab>
   </van-tabs>
