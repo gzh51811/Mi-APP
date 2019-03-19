@@ -2,9 +2,9 @@
     <div class="mine" style="background:#f2f2f2">
        <div class="header">
            <img src="https://m.mi.com/static/img/avatar.76a75b8f17.png" alt="">
-           <span class="login">登录</span>
+           <span class="login" @click="toLogin">登录</span>
            <span>/</span>
-           <span>注册</span>
+           <span  @click="toLogin">注册</span>
        </div>
        <van-cell  class="fz" title="我的订单" value="全部订单" is-link arrow-direction="" size="100px"/>
         <ul class="mineul">
