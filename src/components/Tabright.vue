@@ -212,13 +212,6 @@ export default {
     goto(type){
       this.$router.push({name:"List",query:{type},params:{type}})
     },
-    onRefresh() {
-      setTimeout(() => {
-        this.$toast('刷新成功');
-        this.isLoading = false;
-        this.count++;
-      }, 500);
-    }
   }
 };
 </script>

@@ -2,7 +2,7 @@
     <div class="tab">
         <!-- 顶部 -->
         <van-nav-bar title="分类"  left-arrow color="#f00">
-            <van-icon name="search" slot="right" />
+            <van-icon name="search" slot="right" @click="gotoSousuo"/>
         </van-nav-bar>
     
         <!-- Tab标签左边 -->
@@ -129,13 +129,29 @@ export default {
              this.goodslist= data;
              this.$store.state.list=[];
             this.$store.state.list.push(text,idx) 
-             console.log(this.goodslist)
+            //  console.log(this.goodslist)
         }
         
+    },
+    gotoSousuo(){
+        this.$router.push("/sousuo")
     }
   },
-  
-
+    async created(){
+        let data= await this.$axios
+        .get("http://localhost:8888/setting/Tabright",{
+            params:{
+                style:"新品"
+            }
+        })
+        .then(res=>{
+            console.log(res)
+             return res.data;
+             
+        })
+         this.goodslist= data;
+       
+    },
     components:{
         Tabright
     }

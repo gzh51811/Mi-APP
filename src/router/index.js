@@ -13,6 +13,7 @@ import Login from '../pages/Login.vue'
 import Sousuo from '../pages/Sousuo.vue'
 import Details from '../pages/Details.vue';
 import Denglu from '../pages/Denglu.vue';
+import Mihome from '../pages/Mihome.vue';
 
 
 
@@ -105,6 +106,13 @@ let router = new VueRouter({
             path: '/list',
             name: 'List',
             component: List,
+            meta: {
+                showFoot: false
+            }
+        },{
+            path:'/Mihome',
+            name:'Mihome',
+            component: Mihome,
             meta: {
                 showFoot: false
             }
