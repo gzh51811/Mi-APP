@@ -150,7 +150,7 @@ export default {
              
         })
          this.goodslist= data;
-       
+        this.$store.state.list=["新品",0];
     },
     components:{
         Tabright

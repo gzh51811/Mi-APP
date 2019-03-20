@@ -6,7 +6,7 @@
       :key="menu.id+100"
       v-show="idx===$store.state.list[1]"
     >
-      <img class="topimg" :src="menus[idx].topimg" alt>
+      <img class="topimg" :src="menus[idx].topimg" alt @click="gotodetails(list._id)">
     </div>
     <div class="toptitle">
       <span class="line">——</span>
@@ -224,12 +224,8 @@ export default {
     goto(type) {
       this.$router.push({ name: "List", query: { type }, params: { type } });
     },
-    onRefresh() {
-      setTimeout(() => {
-        this.$toast("刷新成功");
-        this.isLoading = false;
-        this.count++;
-      }, 500);
+    gotodetails(id){
+      this.$router.push({ name: "Details", query: { id }, params: { id } });
     }
   }
 };
