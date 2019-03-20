@@ -108,9 +108,9 @@ export default {
           return res.data;
         });
         if (data === "注册成功") {
-          this.$toast.success("注册成功，快去登录吧");
+          await this.$toast.success("注册成功，快去登录吧");
         } else {
-          this.$toast.fail(data);
+          await this.$toast.fail(data);
         }
       }
     }

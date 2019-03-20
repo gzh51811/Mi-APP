@@ -7,9 +7,7 @@
     </header>
     <ul class="listul">
       <li v-for="(item,idx) in list" :key="idx">
-        <img
-          :src="item.imgurl"
-        >
+        <img :src="item.imgurl">
         <div class="lileft">
           <p v-text="item.name"></p>
           <font color="#ff4a00" v-text="item.brief"></font>
@@ -59,7 +57,7 @@
 export default {
   data() {
     return {
-        list:[],
+      list: [],
       listgoods: "商品列表"
     };
   },
@@ -71,17 +69,37 @@ export default {
       this.$router.push("/sousuo");
     }
   },
- async mounted() {
-  let data = await this.$axios
-      .get("http://localhost:8888/setting/findUser", {
-        params: {
-          type: this.$route.params.type
-        }
-      })
-      .then(function(res) {
-        return res.data
-      })
-      this.list = data
+  async mounted() {
+    console.log(this.$route);
+    await this.$toast.loading({
+      mask: true,
+      message: "加载中..."
+    });
+    if (this.$route.query.path == "/home") {
+      let data = await this.$axios
+        .get("http://localhost:8888/setting/findUser", {
+          params: {
+            type: this.$route.query.type
+          }
+        })
+        .then(function(res) {
+          return res.data;
+        });
+      this.list = data;
+      this.$toast.clear()
+    } else if (this.$route.query.path == "/sousuo") {
+      let data = await this.$axios
+        .get("http://localhost:8888/setting/findName", {
+          params: {
+            name: this.$route.query.name
+          }
+        })
+        .then(function(res) {
+          return res.data;
+        });
+      this.list = data;
+      this.$toast.clear()
+    }
   }
 };
 </script>

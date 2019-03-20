@@ -31,9 +31,7 @@ export default {
   props:['tap'],
   methods:{
     todetails(){
-      this.$router.push({params:{
-        
-      }})
+      this.$router.push('Details')
     }
   },
  async mounted() {
@@ -46,7 +44,6 @@ export default {
       .then(function(res) {
         console.log(res.data);
         return res.data
-        // this.list = res.data.splice(0,4)
       })
       this.list = data.splice(0,4)
   }
