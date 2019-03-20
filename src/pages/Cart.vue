@@ -1,35 +1,21 @@
 <template>
   <div class="cart">
     <header>
-      <div>
-        <van-icon name="arrow-left" size="0.8378rem"/>
-      </div>
-      <div>
-        <span>购物车</span>
-      </div>
-      <div>
-        <van-icon name="search" size="0.8378rem"/>
-      </div>
+      <div><van-icon name="arrow-left" size="0.8378rem"/></div>
+      <div><span>购物车</span></div>
+      <div><van-icon name="search" size="0.8378rem"/></div>
     </header>
 
     <section class="goLogin">
-      <div>
-        <span>登录后享受更多优惠</span>
-      </div>
-      <div @click="goLogin">
-        <span>去登录</span>
-      </div>
-      <div>
-        <van-icon name="arrow" size="0.3584rem"/>
-      </div>
+      <div><span>登录后享受更多优惠</span></div>
+      <div @click="goLogin"><span>去登录</span></div>
+      <div><van-icon name="arrow" size="0.3584rem"/></div>
     </section>
 
     <section class="kong" v-if="cartlist.length<=0">
       <div></div>
       <div>
-        <span>
-          <van-icon name="shopping-cart-o" size="0.8378rem"/>
-        </span>
+        <span><van-icon name="shopping-cart-o" size="0.8378rem"/></span>
         <span>购物车还是空的</span>
         <span @click="goGuang">去逛逛</span>
       </div>
@@ -99,14 +85,8 @@
     <div class="buy">
       <ul>
         <li>
-          <p>
-            共
-            <span>2</span>件 &nbsp;
-            <span>金额：</span>
-          </p>
-          <p>
-            <span>1999</span> 元
-          </p>
+          <p>共<span>2</span>件 &nbsp;<span>金额：</span></p>
+          <p><span>1999</span> 元</p>
         </li>
         <li @click="goBuy">
           <span>继续购物</span>
@@ -116,6 +96,7 @@
         </li>
       </ul>
     </div>
+
   </div>
 </template>
 
