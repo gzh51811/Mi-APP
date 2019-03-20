@@ -3,15 +3,15 @@
     <div class="header">精品热卖</div>
     <ul class="list">
       <li class="list-item" v-for="(item,idx) in list" :key="idx" @click="todetails">
-          <div>
-            <img class="img" :src="item.imgurl" width="100%" height="50%">
-            <div class="ind">
-              <p class="name" v-text="item.name"></p>
-              <p class="tip" v-text="item.brief"></p>
-              <p class="price" v-text="'￥'+item.taocan[0].price"></p>
-              <van-button type="danger" size="small" style="margin-left:30%">立即购买</van-button>
-            </div>
+        <div>
+          <img class="img" :src="item.imgurl" width="100%" height="50%">
+          <div class="ind">
+            <p class="name" v-text="item.name"></p>
+            <p class="tip" v-text="item.brief"></p>
+            <p class="price" v-text="'￥'+item.taocan[0].price"></p>
+            <van-button type="danger" size="small" style="margin-left:30%">立即购买</van-button>
           </div>
+        </div>
       </li>
     </ul>
   </div>
@@ -26,13 +26,9 @@ export default {
   props:['tap'],
   methods:{
     todetails(){
-      this.$router.push({params:{
-        
-      }})
+      this.$router.push('Details')
     }
   },
- async mounted() {
-  let data = await this.$axios
   props: ["tap"],
   async mounted() {
     let data = await this.$axios
@@ -49,6 +45,8 @@ export default {
     this.list = data.splice(0, 4);
   }
 };
+
+
 </script>
 <style lang="scss" scoped>
 @import "../styles/_mixin.scss";

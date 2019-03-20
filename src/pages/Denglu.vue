@@ -86,7 +86,7 @@ export default {
           setTimeout(()=>{
             this.$router.push('/mine')
           },1000)
-          console.log(this)
+          localStorage.setItem('name',this.username)
         }else{
           this.$toast.fail('登陆失败');
         }

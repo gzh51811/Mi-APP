@@ -1,6 +1,6 @@
 <template>
   <div id="gate">
-    <p class='gate' v-for="(gate,idx) in gates[0].tuijian" :key="idx" @click="toList">
+    <p class='gate' v-for="(gate,idx) in gates[0].tuijian" :key="idx"  @click="todetails">
       <img :src="gate" width="100%">
     </p>
   </div>
@@ -24,10 +24,8 @@ export default {
   },
   props:['tap'],
   methods:{
-    toList(){
-      let type = this.tap.type;
-      this.$router.push({name:'List',params:{type}})
-
+     todetails(){
+      this.$router.push({path:'/list',query:{type:this.tap.type,path:'/home'}})
     }
   }
 };

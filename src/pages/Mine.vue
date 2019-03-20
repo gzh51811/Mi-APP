@@ -2,9 +2,9 @@
   <div class="mine" style="background:#f2f2f2">
     <div class="header">
       <img src="https://m.mi.com/static/img/avatar.76a75b8f17.png" alt>
-      <span class="login" @click="toLogin">登录</span>
-      <span>/</span>
-      <span @click="toLogin">注册</span>
+      <p>
+        <span class="login" @click="toLogin" v-text="uname? uname+'/退出' : '登录/注册'"></span>
+      </p>
     </div>
     <van-cell class="fz" title="我的订单" value="全部订单" is-link arrow-direction size="100px"/>
     <ul class="mineul">
@@ -49,7 +49,7 @@
       />
     </van-popup>
     <van-cell class="mt1o fz" title="服务中心" icon="phone" is-link arrow-direction size="100px"/>
-    <van-cell class="fz" title="小米之家" icon="shop-collect" is-link arrow-direction size="100px"/>
+    <van-cell class="fz" title="小米之家" icon="shop-collect" is-link arrow-direction size="100px" @click="toMihome"/>
     <van-cell class="mt1o fz" title="F码通道" icon="star" is-link arrow-direction size="100px"/>
     <van-cell class="fz ptb" title="设置" icon="setting" is-link arrow-direction size="100px"/>
   </div>
@@ -65,7 +65,7 @@ const coupon = {
   startAt: 1489104000,
   endAt: 1514592000,
   valueDesc: "1.5",
-  unitDesc: "元"
+  unitDesc: "元",
 };
 export default {
   data() {
@@ -73,7 +73,8 @@ export default {
       chosenCoupon: -1,
       coupons: [coupon],
       disabledCoupons: [coupon],
-      showList: false
+      showList: false,
+      uname:''
     };
   },
   methods: {
@@ -86,7 +87,14 @@ export default {
     },
     toLogin() {
       this.$router.push("/login");
+      localStorage.removeItem("name")
+    },
+    toMihome(){
+      this.$router.push("/Mihome");
     }
+  },
+  mounted(){
+    this.uname = localStorage.getItem("name")
   }
 };
 </script>

@@ -13,13 +13,11 @@ import Login from '../pages/Login.vue'
 import Sousuo from '../pages/Sousuo.vue'
 import Details from '../pages/Details.vue';
 import Denglu from '../pages/Denglu.vue';
+import Mihome from '../pages/Mihome.vue';
 
-import Login from '../pages/Login.vue';
-import Sousuo from '../pages/Sousuo.vue';
-import List from '../pages/List.vue';
 
 let router = new VueRouter({
-    routes:[
+    routes: [
         {
             path: '/',
             redirect: 'home'
@@ -89,7 +87,7 @@ let router = new VueRouter({
             }
         },
         {
-            path: '/list?type=:type',
+            path: '/list',
             name: 'List',
             component: List,
             meta: {
@@ -127,10 +125,18 @@ let router = new VueRouter({
             meta: {
                 showFoot: false
             }
-        },{
+        }, 
+        {
             path: '/list',
             name: 'List',
             component: List,
+            meta: {
+                showFoot: false
+            }
+        },{
+            path:'/Mihome',
+            name:'Mihome',
+            component: Mihome,
             meta: {
                 showFoot: false
             }
