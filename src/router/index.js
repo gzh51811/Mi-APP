@@ -14,7 +14,9 @@ import Sousuo from '../pages/Sousuo.vue'
 import Details from '../pages/Details.vue';
 import Denglu from '../pages/Denglu.vue';
 
-
+import Login from '../pages/Login.vue';
+import Sousuo from '../pages/Sousuo.vue';
+import List from '../pages/List.vue';
 
 let router = new VueRouter({
     routes:[
@@ -28,6 +30,30 @@ let router = new VueRouter({
             component: Home,
             meta: {
                 showFoot: true
+            }
+        },
+        {
+            path: '/list',
+            name: 'List',
+            component: List,
+            meta: {
+                showFoot: false
+            }
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login,
+            meta: {
+                showFoot: false
+            }
+        },
+        {
+            path: '/sousuo',
+            name: 'Sousuo',
+            component: Sousuo,
+            meta: {
+                showFoot: false
             }
         },
         {

@@ -9,11 +9,18 @@
 import Vue from "vue"
 import Vant from 'vant';
 import 'vant/lib/index.css';
+Vue.use(Vant);
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
-Vue.use(Vant);
-import Xfooter from "./components/Xfooter.vue";
+
+import Xfooter from "./components/Xfooter.vue"
+
+import 'vue-beauty/package/style/vue-beauty.min.css'
+import vueBeauty from 'vue-beauty'
+Vue.use(vueBeauty)
+
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 
@@ -22,7 +29,7 @@ export default {
     Xfooter
   },
   mounted(){
-    console.log(this.$route)
+    console.log(this.$route);
   }
 }
 </script>
