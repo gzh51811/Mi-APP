@@ -1,33 +1,45 @@
 <template>
-    <div class="tabright">
-        <div class="topdiv" v-for="(menu,idx) in  menus" :key="menu.id+100" v-show="idx===$store.state.list[1]">
-            <img class="topimg" :src="menus[idx].topimg" alt="">
-            </div>
-        <div class="toptitle">
-            <span class="line">——</span>
-            <span class="wordspan" v-text="$store.state.list[0]?$store.state.list[0]:'新品'" ref="key">{{$store.state.list[0]}}</span>
-            <span class="line">——</span>
-        </div>
-        <ul>
-            <li v-for="(list,idx) in goodslist" :key="idx" @click="goto(list.type)">
-                <img :src="list.imgurl" alt="">
-                <div class="title">{{list.name}}</div>
-            </li>
-        </ul>
-       <div class="bottomdiv" v-for="(menu,idx) in  menus" :key="menu.id"
-          v-if="idx===$store.state.list[1]">
-           <img class="bottomimg" :src="menus[idx].bottom">
-        </div>
-        <!-- {{goodslist}} -->
+  <div class="tabright">
+    <div
+      class="topdiv"
+      v-for="(menu,idx) in  menus"
+      :key="menu.id+100"
+      v-show="idx===$store.state.list[1]"
+    >
+      <img class="topimg" :src="menus[idx].topimg" alt>
     </div>
- 
+    <div class="toptitle">
+      <span class="line">——</span>
+      <span
+        class="wordspan"
+        v-text="$store.state.list[0]?$store.state.list[0]:'新品'"
+        ref="key"
+      >{{$store.state.list[0]}}</span>
+      <span class="line">——</span>
+    </div>
+    <ul>
+      <li v-for="(list,idx) in goodslist" :key="idx" @click="goto(list.type)">
+        <img :src="list.imgurl" alt>
+        <div class="title">{{list.name}}</div>
+      </li>
+    </ul>
+    <div
+      class="bottomdiv"
+      v-for="(menu,idx) in  menus"
+      :key="menu.id"
+      v-show="idx===$store.state.list[1]"
+    >
+      <img class="bottomimg" :src="menus[idx].bottom">
+    </div>
+    <!-- {{goodslist}} -->
+  </div>
 </template>
 <script>
 export default {
-  props:["goodslist"],
+  props: ["goodslist"],
   data() {
     return {
-        count: 0,
+      count: 0,
       isLoading: false,
       menus: [
         {
@@ -208,13 +220,13 @@ export default {
       ]
     };
   },
-  methods:{
-    goto(type){
-      this.$router.push({name:"List",query:{type},params:{type}})
+  methods: {
+    goto(type) {
+      this.$router.push({ name: "List", query: { type }, params: { type } });
     },
     onRefresh() {
       setTimeout(() => {
-        this.$toast('刷新成功');
+        this.$toast("刷新成功");
         this.isLoading = false;
         this.count++;
       }, 500);
@@ -278,7 +290,7 @@ ul {
 ul li {
   width: 30%;
   text-align: center;
-  margin-top:20px;
+  margin-top: 20px;
   overflow: hidden;
 }
 ul li img {

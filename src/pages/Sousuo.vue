@@ -6,7 +6,7 @@
         <input  placeholder="请输入搜索商品" class="stxt" type="text" v-model="value">
      
       <div >
-          <p class="icon">搜索</p>
+          <p class="icon" @click="search">搜索</p>
       </div>
     </div>
     <div class="hot">
@@ -37,6 +37,9 @@ export default {
     methods:{
         gotoback(){
             this.$router.back()
+        },
+        search(){
+          this.$router.push({path:'/list',query:{name:this.value,path:'/sousuo'}})
         }
     }
 };

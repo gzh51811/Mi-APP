@@ -17,7 +17,7 @@ import Denglu from '../pages/Denglu.vue';
 
 
 let router = new VueRouter({
-    routes:[
+    routes: [
         {
             path: '/',
             redirect: 'home'
@@ -63,7 +63,7 @@ let router = new VueRouter({
             }
         },
         {
-            path: '/list?type=:type',
+            path: '/list',
             name: 'List',
             component: List,
             meta: {
@@ -101,7 +101,8 @@ let router = new VueRouter({
             meta: {
                 showFoot: false
             }
-        },{
+        }, 
+        {
             path: '/list',
             name: 'List',
             component: List,
