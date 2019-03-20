@@ -75,7 +75,7 @@ export default {
       mask: true,
       message: "加载中..."
     });
-    if (this.$route.query.path == "/home") {
+    if (this.$route.query.path == "/home" || this.$route.query.path == "/tap") {
       let data = await this.$axios
         .get("http://localhost:8888/setting/findUser", {
           params: {

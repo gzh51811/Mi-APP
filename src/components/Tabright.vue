@@ -222,7 +222,7 @@ export default {
   },
   methods: {
     goto(type) {
-      this.$router.push({ name: "List", query: { type }, params: { type } });
+      this.$router.push({name: "List"},{query: { type ,path:'/tap'}} );
     },
     gotodetails(id){
       this.$router.push({ name: "Details", query: { id }, params: { id } });
