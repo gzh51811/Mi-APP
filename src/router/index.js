@@ -15,9 +15,6 @@ import Details from '../pages/Details.vue';
 import Denglu from '../pages/Denglu.vue';
 import Mihome from '../pages/Mihome.vue';
 
-import Login from '../pages/Login.vue';
-import Sousuo from '../pages/Sousuo.vue';
-import List from '../pages/List.vue';
 
 let router = new VueRouter({
     routes: [
