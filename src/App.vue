@@ -16,6 +16,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+import 'vue-beauty/package/style/vue-beauty.min.css'
+import vueBeauty from 'vue-beauty'
+Vue.use(vueBeauty)
+
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 
@@ -24,7 +28,7 @@ export default {
     Xfooter
   },
   mounted(){
-    console.log(this.$route)
+    console.log(this.$route);
   }
 }
 </script>

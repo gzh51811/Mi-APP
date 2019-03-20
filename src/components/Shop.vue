@@ -5,16 +5,11 @@
       <li class="list-item" v-for="(item,idx) in list" :key="idx">
         <router-link to="Detail">
           <div>
-              <img
-              class="img"
-              :src="item.imgurl"
-              width="100%"
-              height="50%"
-            >
+            <img class="img" :src="item.imgurl" width="100%" height="50%">
             <div class="ind">
               <p class="name" v-text="item.name"></p>
-              <p class="tip"  v-text="item.brief"></p>
-              <p class="price"  v-text="'￥'+item.taocan[0].price"></p>
+              <p class="tip" v-text="item.brief"></p>
+              <p class="price" v-text="'￥'+item.taocan[0].price"></p>
               <van-button type="danger" size="small" style="margin-left:30%">立即购买</van-button>
             </div>
           </div>
@@ -25,14 +20,14 @@
 </template>
 <script>
 export default {
-  data(){
-    return{
-      list:[]
-    }
+  data() {
+    return {
+      list: []
+    };
   },
-  props:['tap'],
- async mounted() {
-  let data = await this.$axios
+  props: ["tap"],
+  async mounted() {
+    let data = await this.$axios
       .get("http://localhost:8888/setting/findUser", {
         params: {
           type: this.tap.type
@@ -40,12 +35,11 @@ export default {
       })
       .then(function(res) {
         console.log(res.data);
-        return res.data
+        return res.data;
         // this.list = res.data.splice(0,4)
-      })
-      this.list = data.splice(0,4)
+      });
+    this.list = data.splice(0, 4);
   }
-  
 };
 </script>
 <style lang="scss" scoped>
@@ -71,8 +65,8 @@ export default {
   margin: 1%;
   background: #e8c1f1;
 }
-.img{
-  height: w(146.4px)
+.img {
+  height: w(146.4px);
 }
 .name,
 .price,
