@@ -49,7 +49,7 @@
       />
     </van-popup>
     <van-cell class="mt1o fz" title="服务中心" icon="phone" is-link arrow-direction size="100px"/>
-    <van-cell class="fz" title="小米之家" icon="shop-collect" is-link arrow-direction size="100px"/>
+    <van-cell class="fz" title="小米之家" icon="shop-collect" is-link arrow-direction size="100px" @click="toMihome"/>
     <van-cell class="mt1o fz" title="F码通道" icon="star" is-link arrow-direction size="100px"/>
     <van-cell class="fz ptb" title="设置" icon="setting" is-link arrow-direction size="100px"/>
   </div>
@@ -88,6 +88,9 @@ export default {
     toLogin() {
       this.$router.push("/login");
       localStorage.removeItem("name")
+    },
+    toMihome(){
+      this.$router.push("/Mihome");
     }
   },
   mounted(){
