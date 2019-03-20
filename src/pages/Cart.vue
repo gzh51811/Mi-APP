@@ -429,13 +429,6 @@ header {
       &:nth-child(2n) {
         margin-left: 1.5%;
       }
-      // div{
-      //     width: 100%;
-      //     display: flex;
-      //     p{
-
-      //     }
-      // }
       p {
         font-size: 0.4324rem;
         margin: 0.0561rem 0.2803rem;
