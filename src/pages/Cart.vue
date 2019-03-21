@@ -1,21 +1,38 @@
 <template>
   <div class="cart">
     <header>
-      <div><van-icon name="arrow-left" size="0.8378rem"/></div>
+      <div @click="toxq"><van-icon name="arrow-left" size="0.8378rem"/></div>
       <div><span>购物车</span></div>
       <div><van-icon name="search" size="0.8378rem"/></div>
+      <div @click="gotoback">
+        <van-icon name="arrow-left" size="0.8378rem"/>
+      </div>
+      <div>
+        <span>购物车</span>
+      </div>
+      <div>
+        <van-icon name="search" size="0.8378rem"/>
+      </div>
     </header>
 
     <section class="goLogin">
-      <div><span>登录后享受更多优惠</span></div>
-      <div @click="goLogin"><span>去登录</span></div>
-      <div><van-icon name="arrow" size="0.3584rem"/></div>
+      <div>
+        <span>登录后享受更多优惠</span>
+      </div>
+      <div @click="goLogin">
+        <span>去登录</span>
+      </div>
+      <div>
+        <van-icon name="arrow" size="0.3584rem"/>
+      </div>
     </section>
 
     <section class="kong" v-if="cartlist.length<=0">
       <div></div>
       <div>
-        <span><van-icon name="shopping-cart-o" size="0.8378rem"/></span>
+        <span>
+          <van-icon name="shopping-cart-o" size="0.8378rem"/>
+        </span>
         <span>购物车还是空的</span>
         <span @click="goGuang">去逛逛</span>
       </div>
@@ -41,6 +58,32 @@
                 </p>
             </div>
             <div><van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/></div>
+        <li class="list-item" v-for="item in cartlist" :key="item.item_id">
+          <div>
+            <v-checkbox class="com"></v-checkbox>
+          </div>
+          <div>
+            <img :src="item.item_url" alt>
+          </div>
+          <div>
+            <p>{{item.item_name}}</p>
+            <p>
+              售价：
+              <span>{{item.item_price}}</span>元
+            </p>
+            <p>
+              <span @click="delNum(item.item_id,item.item_qty)">
+                <i class="el-icon-minus"></i>
+              </span>
+              <input type="text" :value="item.item_qty">
+              <span @click="addNum(item.item_id,item.item_qty)">
+                <i class="el-icon-plus"></i>
+              </span>
+            </p>
+          </div>
+          <div>
+            <van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/>
+          </div>
         </li>
       </ul>
     </main>
@@ -75,7 +118,6 @@
         </li>
       </ul>
     </div>
-
   </div>
 </template>
 
@@ -84,7 +126,7 @@
 export default {
   data() {
     return {
-    //   checked: false,
+      //   checked: false,
       num: 1,
       likes: [],
       cartlist: [],
@@ -107,6 +149,9 @@ export default {
   },
 
   methods: {
+    gotoback() {
+      this.$router.back();
+    },
     goGuang() {
       this.$router.push("/home");
     },
@@ -115,6 +160,9 @@ export default {
     },
     goBuy() {
       this.$router.push("/tap");
+    },
+    toxq(){
+      this.$router.push("/Details");
     },
 
     // 购物车点击商品跳转详情页
@@ -142,49 +190,52 @@ export default {
 
     // 减少数量
     delNum(id, num) {
-        num--;
-        if (num <= 1) {
-            num = 1;
-            for (let i = 0; i < this.cartlist.length; i++) {
-                if (this.cartlist[i].item_id == id) {
-                    this.cartlist[i].item_qty = num;
-                }
-            }
-        } else {
-            for (let a = 0; a < this.cartlist.length; a++) {
-                if (this.cartlist[a].item_id == id) {
-                    this.cartlist[a].item_qty = num;
-                }
-            }
+      num--;
+      if (num <= 1) {
+        num = 1;
+        for (let i = 0; i < this.cartlist.length; i++) {
+          if (this.cartlist[i].item_id == id) {
+            this.cartlist[i].item_qty = num;
+          }
         }
-        this.$axios.get("http://localhost:8888/setting/changeNum", {
-            params: {
-                item_id: id,
-                item_qty: num
-            }
-        });
+        
+      } else {
+        for (let a = 0; a < this.cartlist.length; a++) {
+          if (this.cartlist[a].item_id == id) {
+            this.cartlist[a].item_qty = num;
+          }
+        }
+      }
+      this.$axios.get("http://localhost:8888/setting/changeNum", {
+        params: {
+          item_id: id,
+          item_qty: num
+        }
+      });
 
-        this.totlePrice;
+      this.totlePrice;
     },
 
     // 删除商品
     delGoods(id) {
-        for (var i = 0; i < this.cartlist.length; i++) {
-            if (this.cartlist[i].item_id === id) {
-                this.cartlist.splice(i, 1);
-                for(var j=0; j<this.selected.length; j++){
-                  if(j === i){
-                    this.selected.splice(j,1);
-                  }
-                }
-                this.totlePrice;
+      for (var i = 0; i < this.cartlist.length; i++) {
+          if (this.cartlist[i].item_id === id) {
+            this.cartlist.splice(i, 1);
+            
+            for(var j=0; j<this.selected.length; j++){
+              if(j === i){
+                this.selected.splice(j,1);
+              }
             }
+            this.totlePrice;
+          }
         }
         this.$axios.get("http://localhost:8888/setting/delcart", {
-            params: {
-                item_id: id
-            }
-        });
+          params: {
+            item_id: id
+          }
+        })
+      }
     },
 
     // 复选框勾选
@@ -203,29 +254,44 @@ export default {
 
     // 购物车渲染
     async showLikes() {
-        let { data } = await this.$axios.get("http://localhost:8888/setting/likes",{
-                params: {
-                    item_id: ""
-                }
-            }
-        );
-        this.likes = data;
-
-        // 购物车列表渲染
-        await this.$axios.get("http://localhost:8888/setting/cart", {
-                params: {
-                    item_id: ""
-                }
-            })
-            .then(res => {
-                this.cartlist = res.data;
-            });
+      let { data } = await this.$axios.get(
+        "http://localhost:8888/setting/likes",
+        {
+          params: {
+            item_id: ""
+          }
         }
-    },
+      )
+      .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
+      this.likes = data;
 
-    created() {
-        this.showLikes();
+      // 购物车列表渲染
+      await this.$axios
+        .get("http://localhost:8888/setting/cart", {
+          params: {
+            item_id: ""
+          }
+        })
+        .then(res => {
+          this.cartlist = res.data;
+        })
+        .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
     }
+  },
+
+  async created() {
+    await this.$toast.loading({
+      mask: true,
+      message: "加载中..."
+    });
+    this.showLikes();
+  }
 }
 </script>
 
@@ -337,13 +403,13 @@ header {
           position: relative;
           .com {
             display: inline-block;
-            width: .426667rem;
-            height: .426667rem;
+            width: 0.426667rem;
+            height: 0.426667rem;
             text-align: center;
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
           }
         }
         &:nth-child(2) {

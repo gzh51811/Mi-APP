@@ -1,7 +1,7 @@
 <template>
   <div class="details">
     <header>
-      <div class="small">
+      <div class="small" @click="tolist">
         <i class="el-icon-arrow-left"></i>
       </div>
       <div class="small">
@@ -23,7 +23,7 @@
         <li @click="goCart">
           <van-icon name="shopping-cart-o" size=".586667rem"/>
           <p>购物车</p>
-          <!-- <div>{{num}}</div> -->
+          <div>{{num}}</div>
         </li>
         <li>
           <span @click="addCart">加入购物车</span>
@@ -34,9 +34,9 @@
     <section class="content">
       <div></div>
       <div>
-        <p>{{goods.item_name}}</p>
-        <p>{{goods.item_desc}}</p>
-        <p>￥{{goods.item_price}}</p>
+        <p>{{goods.name}}</p>
+        <p>{{goods.title}}</p>
+        <p>￥{{goods.taocan[0].price}}</p>
       </div>
       <div></div>
     </section>
@@ -55,7 +55,7 @@
           </li>
           <li>
             <span class="span1">已选</span>
-            <span class="sheng">{{goods.item_name}}</span>
+            <span class="sheng">{{goods.name}}</span>
             <span class="spanl">
               <van-icon name="arrow" size=".346667rem"/>
             </span>
@@ -121,15 +121,18 @@
 export default {
     data(){
         return {
-           goods: [],
-           images: [],
-           num: 0
+          goods: [],
+          images: [],
+          num: 0
         }
     },
 
     methods:{
         goHome(){
             this.$router.push('/home');
+        },
+        tolist(){
+          this.$router.push('/list');
         },
 
         goCart(){
@@ -138,37 +141,30 @@ export default {
 
         // 点击添加购物车
         addCart(){
-            console.log(555);
-            let {item_url, item_name, item_desc, item_price, item_id} = this.goods;
-            // let {id} = this.$route.query;
-
-            // 查看该商品是否添加过购物车
-            this.$axios.get("http://localhost:8888/setting/addCart", {
-                params:{
-                    item_id,
-                    item_url,
-                    item_desc,
-                    item_name,
-                    item_price,
-                }
-            })
+          this.$axios.get("http://localhost:8888/setting/addCart", {
+              params:{
+                  item_id : this.goods.item_id,
+                  item_url : this.goods.imgurl,
+                  item_desc: this.goods.title,
+                  item_name : this.goods.name,
+                  item_price : this.goods.taocan[0].price
+              }
+          })
         },
         
         // 购物车页点击商品 -> 详情页
         async getData(){
-            console.log(555);
-            // 获取id
-            let {id} = this.$route.query;
+          // 获取id
+          let {id} = this.$route.query;
 
-            let {data} = await this.$axios.get("http://localhost:8888/setting/likes", {
-                params:{
-                    item_id: id
-                }
-            });
-            this.goods = data[0];
-            this.images.push(data[0].item_url);
-            this.images.push(data[0].item_url);
-            this.images.push(data[0].item_url);
+          let {data} = await this.$axios.get("http://localhost:8888/setting/likes", {
+              params:{
+                  item_id: id
+              }
+          });
+          this.goods = data[0];
+          this.images.push(data[0].url1);
+          this.images.push(data[0].url2);
         },
     },
 

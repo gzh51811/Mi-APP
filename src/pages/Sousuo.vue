@@ -2,46 +2,75 @@
   <div>
     <div class="search">
       <van-icon class="icon" name="arrow-left" @click="gotoback"/>
-      
-        <input  placeholder="请输入搜索商品" class="stxt" type="text" v-model="value">
-     
-      <div >
-          <p class="icon" @click="search">搜索</p>
+
+      <input placeholder="请输入搜索商品" class="stxt" type="text" v-model.trim="value" ref="search">
+
+      <div>
+        <p class="icon" @click="search">搜索</p>
       </div>
     </div>
     <div class="hot">
-        <p class="hotss">热门搜索</p>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签dewfwqedwqdwqdwq</van-tag>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签wqewqewqewqewq</van-tag>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签</van-tag>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签</van-tag>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签</van-tag>
-    </div>
-    <div class="hot">
-        <p class="hotss">热门搜索</p>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签dewfwqedwqdwqdwq</van-tag>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签wqewqewqewqewq</van-tag>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签</van-tag>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签</van-tag>
-        <van-tag color="#f2826a" size="large" style="margin:0 10px 10px 0" plain>标签</van-tag>
+      <p class="hotss">热门搜索</p>
+      <van-tag
+        color="#7232dd"
+        size="large"
+        style="margin:0 10px 10px 0"
+        v-for="(txt,idx) in txts"
+        :key="idx"
+        @click="Xsearch(txt.hot)"
+      >{{txt.hot}}</van-tag>
     </div>
   </div>
 </template>
 <script>
 export default {
-    data(){
-        return{
-            value:''
-        }
+  data() {
+    return {
+      value: "",
+      txts: []
+    };
+  },
+  methods: {
+    gotoback() {
+      this.$router.back();
     },
-    methods:{
-        gotoback(){
-            this.$router.back()
-        },
-        search(){
-          this.$router.push({path:'/list',query:{name:this.value,path:'/sousuo'}})
-        }
+    search() {
+      if (this.value.length > 0) {
+        this.$axios
+          .get("http://localhost:8888/setting/addHot", {
+            params: {
+              hot: this.value
+            }
+          })
+          .then(res => {
+            console.log(res);
+          });
+        this.$router.push({
+          path: "/list",
+          query: { name: this.value, path: "/sousuo" }
+        });
+      }
+    },
+    Xsearch(e) {
+      this.$router.push({
+        path: "/list",
+        query: { name: e, path: "/sousuo" }
+      });
     }
+  },
+  async mounted() {
+    this.$refs.search.focus();
+    let data = await this.$axios
+      .get("http://localhost:8888/setting/hot", {
+        params: {
+          hot: ""
+        }
+      })
+      .then(res => {
+        return res.data;
+      });
+    this.txts = data;
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -54,24 +83,24 @@ export default {
   padding: 0 w(10px);
   align-items: center;
 }
-.icon{
+.icon {
   font-size: w(20px);
 }
-.stxt{
+.stxt {
   width: 70%;
   border: none;
   padding-left: w(10px);
   font-size: w(12px);
   height: w(30px);
 }
-.hot{
-    padding: w(10px);
+.hot {
+  padding: w(10px);
 }
 
-.hotss{
-    height: w(30px);
-    width: 100%;
-    font-size: w(14px);
+.hotss {
+  height: w(30px);
+  width: 100%;
+  font-size: w(14px);
 }
 </style>
 

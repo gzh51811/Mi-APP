@@ -6,7 +6,7 @@
       <van-icon class="search" name="search" style="font-size:29px" @click="sousuo"/>
     </header>
     <ul class="listul">
-      <li v-for="(item,idx) in list" :key="idx">
+      <li v-for="(item,idx) in list" :key="idx" @click="toxq(item.item_id)">
         <img :src="item.imgurl">
         <div class="lileft">
           <p v-text="item.name"></p>
@@ -63,10 +63,14 @@ export default {
   },
   methods: {
     gotoback() {
-      this.$router.back();
+      this.$router.push("/tap");
     },
     sousuo() {
       this.$router.push("/sousuo");
+    },
+    toxq(id){
+      console.log(id)
+       this.$router.push({ path: "/details", query: { id }});
     }
   },
   async mounted() {
@@ -84,7 +88,11 @@ export default {
         })
         .then(function(res) {
           return res.data;
-        });
+        })
+         .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
       this.list = data;
       this.$toast.clear()
     } else if (this.$route.query.path == "/sousuo") {
@@ -96,7 +104,11 @@ export default {
         })
         .then(function(res) {
           return res.data;
-        });
+        })
+         .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
       this.list = data;
       this.$toast.clear()
     }
