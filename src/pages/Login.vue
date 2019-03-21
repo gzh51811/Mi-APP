@@ -32,8 +32,8 @@
           required
           :error-message="rptip"
         />
-        <van-field v-model="sms" center clearable label="短信验证码" placeholder="请输入短信验证码">
-          <van-button slot="button" size="small" type="primary">发送验证码</van-button>
+        <van-field v-model="sms" center clearable label="验证码" placeholder="请输入验证码" :error-message="scode">
+          <van-button slot="button" size="small" type="primary" @click='getCode'>{{code}}</van-button>
         </van-field>
       </van-cell-group>
     </div>
@@ -68,6 +68,8 @@ export default {
       sms: "",
       pswd: "",
       repswd: "",
+      scode:"",
+      code:'获取验证码',
       logoimg:
         "https://account.xiaomi.com/static/res/11eb7d1/account-static/respassport/acc-2014/img/2018/milogo@2x.png",
       title: "小米账号登录",
@@ -76,6 +78,9 @@ export default {
     };
   },
   methods: {
+    getCode(){
+      this.code = ''+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)
+    },
     todenglu() {
       this.$router.push("/denglu");
     },
@@ -95,7 +100,12 @@ export default {
       } else {
         this.rptip = "";
       }
-      if (this.uname != "" && this.pswd != "" && this.pswd === this.repswd) {
+      if (this.code != this.sms) {
+        this.scode = "验证码错误";
+      } else {
+        this.scode = "";
+      }
+      if (this.uname != "" && this.pswd != "" && this.pswd === this.repswd && this.code === this.sms) {
         let data = await this.$axios({
           method: "post",
           headers: { "content-type": "application/x-www-form-urlencoded" }, //局部更改
