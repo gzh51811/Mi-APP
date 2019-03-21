@@ -6,7 +6,7 @@
       :key="menu.id+100"
       v-show="idx===$store.state.list[1]"
     >
-      <img class="topimg" :src="menus[idx].topimg" alt @click="gotodetails(list._id)">
+      <img class="topimg" :src="menus[idx].topimg" alt>
     </div>
     <div class="toptitle">
       <span class="line">——</span>
@@ -222,14 +222,18 @@ export default {
   },
   methods: {
     goto(type) {
-      this.$router.push({name: "List"},{query: { type ,path:'/tap'}} );
+      // console.log(type)
+      this.$router.push({path:'/list',query:{type,path:'/tap'}})
     },
-    gotodetails(id){
-      this.$router.push({ name: "Details", query: { id }, params: { id } });
-    }
-  }
+    // gotodetails(id){
+    //   console.log("id",id)
+    //   this.$router.push({ path: "/details", query: { id }, params: { id } });
+    // },
+  },
+
 };
 </script>
+
 <style scoped>
 .tabright {
   position: fixed;
@@ -293,8 +297,7 @@ ul li img {
   display: block;
   width: 50px;
   height: 60px;
-  padding-left: 12px;
-  padding-right: 12px;
+  margin: auto;
 }
 .title {
   font-size: 14px;

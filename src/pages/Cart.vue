@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
     <header>
-      <div><van-icon name="arrow-left" size="0.8378rem"/></div>
+      <div @click="toxq"><van-icon name="arrow-left" size="0.8378rem"/></div>
       <div><span>购物车</span></div>
       <div><van-icon name="search" size="0.8378rem"/></div>
     </header>
@@ -24,7 +24,7 @@
 
     <main id="main">
       <ul class="list">
-        <li class="list-item" v-for="(item,idx) in cartlist" :key="item.item_id">
+        <li class="list-item" v-for="(item) in cartlist" :key="item.item_id">
             <div><v-checkbox class="com"></v-checkbox></div>
             <div><img :src="item.item_url" alt></div>
             <div>
@@ -121,6 +121,9 @@ export default {
     },
     goBuy() {
       this.$router.push("/tap");
+    },
+    toxq(){
+      this.$router.push("/Details");
     },
 
     // 购物车点击商品跳转详情页

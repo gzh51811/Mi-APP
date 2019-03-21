@@ -1,0 +1,220 @@
+[33mcommit 68f214fdfeae93f810197e6f5b524e86f3c97618[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Wed Mar 20 20:20:37 2019 +0800
+
+    x'x'x
+
+[33mcommit 5d7f481e6783b157dc88fe2a84144ea70335c55a[m
+Merge: d007d52 cf4fbfb
+Author: lisiyuan <1402740958@qq.com>
+Date:   Wed Mar 20 20:00:58 2019 +0800
+
+    Merge branch 'master' of github.com:gzh51811/Mi-APP
+
+[33mcommit d007d52211f7852dce3878eb3708c17bf6c2ffe7[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Wed Mar 20 20:00:39 2019 +0800
+
+    第N次
+
+[33mcommit cf4fbfb4664ce7a2c23d11d04f14d87732f548be[m
+Merge: 6b23428 958a545
+Author: wwwxjian <hhhh@qq.com>
+Date:   Wed Mar 20 19:56:24 2019 +0800
+
+    Merge branch 'master' of https://github.com/gzh51811/Mi-APP
+
+[33mcommit 6b234287708b0ba0cbe492be789a839ae786ddcd[m
+Merge: 53fe54e d1d6881
+Author: wwwxjian <hhhh@qq.com>
+Date:   Wed Mar 20 19:55:10 2019 +0800
+
+    www
+
+[33mcommit 958a545fbf0f14c96fbae2a3810d0869e64104db[m
+Merge: 616d27b d1d6881
+Author: lisiyuan <1402740958@qq.com>
+Date:   Wed Mar 20 19:02:44 2019 +0800
+
+    冲突
+
+[33mcommit 616d27b0941eafe6c7d2f71e284daa893729a77e[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Wed Mar 20 19:00:44 2019 +0800
+
+    优化登录
+
+[33mcommit 53fe54ef27582cd06559b97958eba3bd86fd2960[m
+Author: wwwxjian <hhhh@qq.com>
+Date:   Wed Mar 20 17:53:16 2019 +0800
+
+    www
+
+[33mcommit d1d688162260394978d4d38460c4f7390fbdfc7c[m
+Merge: 91ffab7 739671d
+Author: freedom <3er23r4rf3q>
+Date:   Wed Mar 20 17:43:15 2019 +0800
+
+    分类页的GU修复
+
+[33mcommit 91ffab766721ba16411f506945b50f20eb4eb859[m
+Author: freedom <3er23r4rf3q>
+Date:   Wed Mar 20 17:34:19 2019 +0800
+
+    解决初始化渲染问题
+
+[33mcommit 739671d55737af86433d634c0b152e69375bc287[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Wed Mar 20 17:28:17 2019 +0800
+
+    模糊搜索
+
+[33mcommit 4a20e6521a828fd8b67a216a30324f0034bb2d37[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Tue Mar 19 20:44:04 2019 +0800
+
+    ...
+
+[33mcommit 1b381e91d9a121b36e13ed931916baea90699999[m
+Merge: 03a6819 c3d1723
+Author: lisiyuan <1402740958@qq.com>
+Date:   Tue Mar 19 20:35:44 2019 +0800
+
+    冲突N
+
+[33mcommit 03a6819c4784408dd4fbee9db649699c0cc1c47d[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Tue Mar 19 20:29:00 2019 +0800
+
+    登录注册完善
+
+[33mcommit c3d1723d67e90b24007b0ce6815ab7ff569562d2[m
+Merge: 117366d 5413d7e
+Author: freedom <3er23r4rf3q>
+Date:   Tue Mar 19 20:24:37 2019 +0800
+
+    Merge branch 'master' of https://github.com/gzh51811/Mi-APP
+
+[33mcommit 117366d97e08573c83262e88cec9e1b9d54b4138[m
+Author: freedom <3er23r4rf3q>
+Date:   Tue Mar 19 20:21:34 2019 +0800
+
+    3.19
+
+[33mcommit 5413d7e52c647b9976ae6c894c1b6232c0fe5de9[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Mon Mar 18 20:50:49 2019 +0800
+
+    t
+
+[33mcommit e622a15470f25e666c58a31094822f1c1b88c61a[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Mon Mar 18 20:21:02 2019 +0800
+
+    冲突解决完毕
+
+[33mcommit ad68fe4794f8e96bd7e2aa427156be2d3ed8c2ce[m
+Merge: 1e0140e 94113bf
+Author: freedom <3er23r4rf3q>
+Date:   Mon Mar 18 19:53:29 2019 +0800
+
+    duan
+
+[33mcommit 94113bf74aef42262c9966167c41b26da0fe6e00[m
+Merge: 64ca1ad 02b2d51
+Author: wwwxjian <hhhh@qq.com>
+Date:   Mon Mar 18 19:40:01 2019 +0800
+
+    提交
+
+[33mcommit 1e0140ea24736faceb7e6db298079d85a3fb631b[m
+Merge: ad93d0c 02b2d51
+Author: freedom <3er23r4rf3q>
+Date:   Mon Mar 18 19:33:04 2019 +0800
+
+    渲染前
+
+[33mcommit ad93d0c5b0d4f86b04f9fbc8756a646225f9656c[m
+Author: freedom <3er23r4rf3q>
+Date:   Mon Mar 18 19:25:45 2019 +0800
+
+    渲染前
+
+[33mcommit 02b2d5156413cf2e3db23e76ddf707b705e3582f[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Mon Mar 18 19:16:41 2019 +0800
+
+    数据库提交
+
+[33mcommit 64ca1ad5729fff1e9d99e28d7bf8b33a3787b82c[m
+Author: wwwxjian <hhhh@qq.com>
+Date:   Mon Mar 18 18:51:17 2019 +0800
+
+    样式二次提交
+
+[33mcommit d47824196c53c7f958044f6dc94d68f606b22127[m
+Author: wwwxjian <hhhh@qq.com>
+Date:   Mon Mar 18 17:08:00 2019 +0800
+
+    样式初稿
+
+[33mcommit 5c6d79c6890c6cbcd73b532119ca83b215c34eaf[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Mon Mar 18 16:14:11 2019 +0800
+
+    冲突1
+
+[33mcommit 00d28ec5edee092a45301ba3aecce1e4202dd728[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Mon Mar 18 16:12:13 2019 +0800
+
+    合并冲突
+
+[33mcommit dc86abfad8044a354d14928e800fd73801231a7a[m
+Merge: 6d10398 a0d871f
+Author: qjtqjt <916176349@qq.com>
+Date:   Mon Mar 18 15:24:49 2019 +0800
+
+    qjt
+
+[33mcommit a0d871f94e2df1eee7767e7216c28eafcd762700[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Mon Mar 18 15:07:04 2019 +0800
+
+    首页完善
+
+[33mcommit 6d10398574455021ed13b2460786949e3d67c28b[m[33m ([m[1;31morigin/qjt[m[33m)[m
+Author: qjtqjt <916176349@qq.com>
+Date:   Mon Mar 18 15:00:18 2019 +0800
+
+    qjt
+
+[33mcommit bc14538c742ff1d4d88ea40b647fc6acee0184cf[m[33m ([m[1;31morigin/wang[m[33m)[m
+Author: wwwxjian <hhhh@qq.com>
+Date:   Mon Mar 18 09:19:59 2019 +0800
+
+    购物车初次提交
+
+[33mcommit ef6ed0fa24b3ae17200ba019eb27e2d40248a99a[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Fri Mar 15 15:56:07 2019 +0800
+
+    router
+
+[33mcommit 8e53abff17b275c62f3b7904384fe0f2da5317c7[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Fri Mar 15 15:55:15 2019 +0800
+
+    路由
+
+[33mcommit b3b3c40d03ca0ba551c0ff5c70fbfd31ab3cacf5[m
+Author: lisiyuan <1402740958@qq.com>
+Date:   Fri Mar 15 14:36:15 2019 +0800
+
+    第一次提交
+
+[33mcommit 936e66188344d13df5470da722f1db49b46f34e8[m
+Author: wwwxjian <hhhh@qq.com>
+Date:   Fri Mar 15 11:26:26 2019 +0800
+
+    init
