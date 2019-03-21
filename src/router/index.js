@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 // import App from '../App.vue'
 import Home from '../pages/Home.vue'
+import Notfound from '../pages/Notfound.vue'
 import List from '../pages/List.vue'
 import Tap from '../pages/Tap.vue'
 import Find from '../pages/Find.vue'
@@ -134,9 +135,17 @@ let router = new VueRouter({
                 showFoot: false
             }
         },{
-            path:'/Mihome',
+            path:'/mihome',
             name:'Mihome',
             component: Mihome,
+            meta: {
+                showFoot: false
+            }
+        }
+        ,{
+            path:'/*',
+            name:'Notfound',
+            component: Notfound,
             meta: {
                 showFoot: false
             }

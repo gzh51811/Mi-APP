@@ -88,7 +88,11 @@ export default {
         })
         .then(function(res) {
           return res.data;
-        });
+        })
+         .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
       this.list = data;
       this.$toast.clear()
     } else if (this.$route.query.path == "/sousuo") {
@@ -100,7 +104,11 @@ export default {
         })
         .then(function(res) {
           return res.data;
-        });
+        })
+         .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
       this.list = data;
       this.$toast.clear()
     }
