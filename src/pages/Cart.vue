@@ -115,7 +115,7 @@ export default {
     // 购物车渲染
     async showLikes() {
       let { data } = await this.$axios.get(
-        "http://localhost:8888/setting/youlikes",
+        "youlikes",
         {
           params: {
             item_id: ""
@@ -130,7 +130,7 @@ export default {
 
       // 购物车列表渲染
       await this.$axios
-        .get("http://localhost:8888/setting/cart", {
+        .get("cart", {
           params: {
             item_id: ""
           }
@@ -172,7 +172,7 @@ export default {
               this.cartlist[i].item_qty = num;
             }
         }
-        this.$axios.get("http://localhost:8888/setting/changeNum", {
+        this.$axios.get("changeNum", {
             params: {
             item_id: id,
             item_qty: num
@@ -248,7 +248,7 @@ export default {
     // // 购物车渲染
     async showLikes() {
       let { data } = await this.$axios.get(
-        "http://localhost:8888/setting/youlikes",
+        "youlikes",
         {
           params: {
             item_id: ""
