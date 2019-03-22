@@ -6,7 +6,7 @@
       <div><van-icon name="search" size="0.8378rem"/></div>
     </header>
 
-    <section class="goLogin">
+    <section class="goLogin" v-if="user">
       <div>
         <span>登录后享受更多优惠</span>
       </div>
@@ -97,10 +97,12 @@ export default {
       cartlist: [],
       selected: [],
       totle: 0,
+      user: ''
     }
   },
 
   computed:{
+
     // 总金额
     totlePrice(){
       // 遍历
@@ -146,6 +148,11 @@ export default {
   },
 
   methods: {
+    // 获取用户名
+    getuser(){
+      user = localStorage.getItem('name')
+    },
+
     gotoback() {
       this.$router.back();
     },
@@ -285,6 +292,7 @@ export default {
       message: "加载中..."
     });
     this.showLikes();
+    this.getuser();
   }
 
 }
