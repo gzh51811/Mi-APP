@@ -117,6 +117,10 @@
 
 
 <script>
+import Vue from 'vue';
+import { Dialog } from 'vant';
+Vue.use(Dialog);
+
 export default {
     data(){
       return {
@@ -139,16 +143,30 @@ export default {
 
         // 点击添加购物车
         addCart(){
-          this.$axios.get("addCart", {
-              params:{
-                  item_id : this.goods.item_id,
-                  item_url : this.goods.imgurl,
-                  item_desc: this.goods.title,
-                  item_name : this.goods.name,
-                  item_price : this.goods.taocan[0].price
-              }
-          })
-           this.$toast.success('添加购物车成功');
+          let user = localStorage.getItem('name');
+          console.log(user);
+          if(user){
+              this.$axios.get("addCart", {
+                params:{
+                    item_id : this.goods.item_id,
+                    item_url : this.goods.imgurl,
+                    item_desc: this.goods.title,
+                    item_name : this.goods.name,
+                    item_price : this.goods.taocan[0].price
+                }
+              })
+              this.$toast.success('添加购物车成功');
+
+          }else{
+              Dialog.confirm({
+                  message: '您还没有登录哦,请先去登录'
+                }).then(() => {
+                  this.$router.push('/login');
+                }).catch(() => {
+                  
+                });
+          }
+          
         },
         
         // 购物车页点击商品 -> 详情页

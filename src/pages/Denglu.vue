@@ -54,6 +54,7 @@ export default {
       loadopen: "去登录",
     };
   },
+
   methods: {
     tologin() {
       this.$router.push('/login');
@@ -84,7 +85,7 @@ export default {
         if(data === 'success'){
           this.$toast.success('登陆成功');
           setTimeout(()=>{
-            this.$router.push('/mine')
+            this.$router.push('/mine');
           },1000)
           localStorage.setItem('name',this.username)
         }else{
@@ -95,6 +96,8 @@ export default {
   }
 };
 </script>
+
+
 <style lang="scss" scoped>
 @import "../styles/_mixin.scss";
 .logo {
