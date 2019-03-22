@@ -3,7 +3,7 @@ import App from './App.vue';
 
 import store from './store/tab.js';
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:8888/setting/';
+axios.defaults.baseURL = 'http://123.56.216.160:8888/setting/';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';//全局更改
 import qs from "qs";//配合qs模块转化post请求的参数，记得先npm install qs
 Vue.prototype.$axios = axios;
