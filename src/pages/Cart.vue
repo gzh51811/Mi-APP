@@ -215,7 +215,8 @@ export default {
 
     // // 购物车渲染
     async showLikes() {
-      let data = await this.$axios.get(
+      let data
+       = await this.$axios.get(
         "youlikes",
         {
           params: {
