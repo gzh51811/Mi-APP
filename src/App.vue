@@ -21,8 +21,6 @@ import 'vue-beauty/package/style/vue-beauty.min.css'
 import vueBeauty from 'vue-beauty'
 Vue.use(vueBeauty)
 
-import axios from 'axios';
-Vue.prototype.$axios = axios;
 
 export default {
   components: {

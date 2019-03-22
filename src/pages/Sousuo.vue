@@ -37,7 +37,7 @@ export default {
     search() {
       if (this.value.length > 0) {
         this.$axios
-          .get("http://localhost:8888/setting/addHot", {
+          .get("addHot", {
             params: {
               hot: this.value
             }
@@ -61,7 +61,7 @@ export default {
   async mounted() {
     this.$refs.search.focus();
     let data = await this.$axios
-      .get("http://localhost:8888/setting/hot", {
+      .get("hot", {
         params: {
           hot: ""
         }

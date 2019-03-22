@@ -73,7 +73,7 @@ export default {
         let data = await this.$axios({
           method: "post",
           headers: { "content-type": "application/x-www-form-urlencoded" },//局部更改
-          url: "http://localhost:8888/setting/loginUser",
+          url: "loginUser",
           data: this.$qs.stringify({
             uname: this.username,
             password: this.password
