@@ -1,9 +1,15 @@
 <template>
   <div class="cart">
     <header>
-      <div @click="gotoback"><van-icon name="arrow-left" size="0.8378rem"/></div>
-      <div><span>购物车</span></div>
-      <div><van-icon name="search" size="0.8378rem"/></div>
+      <div @click="gotoback">
+        <van-icon name="arrow-left" size="0.8378rem"/>
+      </div>
+      <div>
+        <span>购物车</span>
+      </div>
+      <div>
+        <van-icon name="search" size="0.8378rem"/>
+      </div>
     </header>
 
     <section class="goLogin">
@@ -33,22 +39,31 @@
     <main id="main">
       <ul class="list">
         <li class="list-item" v-for="(item,idx) in cartlist" :key="item.item_id">
-            <div><input type="checkbox" class="com" v-model="selected" @click="select(idx)" :value="idx" /></div>
-            <div><img :src="item.item_url" alt></div>
-            <div>
-                <p>{{item.item_name}}</p>
-                <p>售价：<span>{{item.item_price}}</span>元</p>
-                <p>
-                  <span @click="delNum(item.item_id,item.item_qty)">
-                      <i class="el-icon-minus"></i>
-                  </span>
-                  <input type="text" :value="item.item_qty">
-                  <span @click="addNum(item.item_id,item.item_qty)">
-                      <i class="el-icon-plus"></i>
-                  </span>
-                </p>
-            </div>
-            <div><van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/></div>
+          <div>
+            <input type="checkbox" class="com" v-model="selected" @click="select(idx)" :value="idx">
+          </div>
+          <div>
+            <img :src="item.item_url" alt>
+          </div>
+          <div>
+            <p>{{item.item_name}}</p>
+            <p>
+              售价：
+              <span>{{item.item_price}}</span>元
+            </p>
+            <p>
+              <span @click="delNum(item.item_id,item.item_qty)">
+                <i class="el-icon-minus"></i>
+              </span>
+              <input type="text" :value="item.item_qty">
+              <span @click="addNum(item.item_id,item.item_qty)">
+                <i class="el-icon-plus"></i>
+              </span>
+            </p>
+          </div>
+          <div>
+            <van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/>
+          </div>
         </li>
       </ul>
     </main>
@@ -72,8 +87,14 @@
     <div class="buy">
       <ul>
         <li>
-          <p>共<span>{{num}}</span>件 &nbsp;<span>金额：</span></p>
-          <p><span>{{totle}}</span> 元</p>
+          <p>
+            共
+            <span>{{num}}</span>件 &nbsp;
+            <span>金额：</span>
+          </p>
+          <p>
+            <span>{{totle}}</span> 元
+          </p>
         </li>
         <li @click="goBuy">
           <span>继续购物</span>
@@ -83,7 +104,6 @@
         </li>
       </ul>
     </div>
-    
   </div>
 </template>
 
@@ -96,53 +116,20 @@ export default {
       likes: [],
       cartlist: [],
       selected: [],
-      totle: 0,
-    }
+      totle: 0
+    };
   },
 
-  computed:{
+  computed: {
     // 总金额
-    totlePrice(){
+    totlePrice() {
       // 遍历
       let num = 0;
-      for(var i=0; i<this.selected.length; i++){
-        num = this.cartlist[i].item_qty * this.cartlist[i].item_price + num; 
+      for (var i = 0; i < this.selected.length; i++) {
+        num = this.cartlist[i].item_qty * this.cartlist[i].item_price + num;
       }
-      
       this.totle = num;
-    },
-
-    // 购物车渲染
-    async showLikes() {
-      let { data } = await this.$axios.get(
-        "youlikes",
-        {
-          params: {
-            item_id: ""
-          }
-        }
-      )
-      .catch(err=>{
-          console.log(err)
-          this.$router.push('/notfound')
-        })
-      this.likes = data;
-
-      // 购物车列表渲染
-      await this.$axios
-        .get("cart", {
-          params: {
-            item_id: ""
-          }
-        })
-        .then(res => {
-          this.cartlist = res.data;
-        })
-        .catch(err=>{
-          console.log(err)
-          this.$router.push('/notfound')
-        })
-    },
+    }
   },
 
   methods: {
@@ -166,20 +153,20 @@ export default {
 
     // 添加数量
     addNum(id, num) {
-        num++;
-        for (var i = 0; i < this.cartlist.length; i++) {
-            if (this.cartlist[i].item_id == id) {
-              this.cartlist[i].item_qty = num;
-            }
+      num++;
+      for (var i = 0; i < this.cartlist.length; i++) {
+        if (this.cartlist[i].item_id == id) {
+          this.cartlist[i].item_qty = num;
         }
-        this.$axios.get("changeNum", {
-            params: {
-            item_id: id,
-            item_qty: num
-            }
-        });
+      }
+      this.$axios.get("changeNum", {
+        params: {
+          item_id: id,
+          item_qty: num
+        }
+      });
 
-        this.totlePrice;
+      this.totlePrice;
     },
 
     // 减少数量
@@ -192,7 +179,6 @@ export default {
             this.cartlist[i].item_qty = num;
           }
         }
-        
       } else {
         for (let a = 0; a < this.cartlist.length; a++) {
           if (this.cartlist[a].item_id == id) {
@@ -215,10 +201,10 @@ export default {
       for (var i = 0; i < this.cartlist.length; i++) {
         if (this.cartlist[i].item_id === id) {
           this.cartlist.splice(i, 1);
-          
-          for(var j=0; j<this.selected.length; j++){
-            if(j === i){
-              this.selected.splice(j,1);
+
+          for (var j = 0; j < this.selected.length; j++) {
+            if (j === i) {
+              this.selected.splice(j, 1);
             }
           }
           this.totlePrice;
@@ -228,17 +214,17 @@ export default {
         params: {
           item_id: id
         }
-      })
+      });
     },
 
-      // 复选框勾选
-    select(idx){
+    // 复选框勾选
+    select(idx) {
       // 获取idx在数组中的位置
       let index = this.selected.indexOf(idx);
-      if(index >= 0){
+      if (index >= 0) {
         // 已勾选
-        this.selected.splice(index,1)
-      }else{
+        this.selected.splice(index, 1);
+      } else {
         this.selected.push(idx);
       }
 
@@ -247,18 +233,16 @@ export default {
 
     // // 购物车渲染
     async showLikes() {
-      let { data } = await this.$axios.get(
-        "youlikes",
-        {
+      let { data } = await this.$axios
+        .get("youlikes", {
           params: {
             item_id: ""
           }
-        }
-      )
-      .catch(err=>{
-          console.log(err)
-          this.$router.push('/notfound')
         })
+        .catch(err => {
+          console.log(err);
+          this.$router.push("/notfound");
+        });
       this.likes = data;
 
       // 购物车列表渲染
@@ -271,12 +255,11 @@ export default {
         .then(res => {
           this.cartlist = res.data;
         })
-        .catch(err=>{
-          console.log(err)
-          this.$router.push('/notfound')
-        })
-    },
-
+        .catch(err => {
+          console.log(err);
+          this.$router.push("/notfound");
+        });
+    }
   },
 
   async created() {
@@ -286,9 +269,7 @@ export default {
     });
     this.showLikes();
   }
-
-}
-
+};
 </script>
 
 
