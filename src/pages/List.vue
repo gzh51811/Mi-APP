@@ -75,7 +75,7 @@ export default {
     });
     if (this.$route.query.path == "/home" || this.$route.query.path == "/tap") {
       let data = await this.$axios
-        .get("/setting/findUser", {
+        .get("findUser", {
           params: {
             type: this.$route.query.type
           }
