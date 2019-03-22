@@ -139,7 +139,7 @@ export default {
 
         // 点击添加购物车
         addCart(){
-          this.$axios.get("http://localhost:8888/setting/addCart", {
+          this.$axios.get("addCart", {
               params:{
                   item_id : this.goods.item_id,
                   item_url : this.goods.imgurl,
@@ -156,7 +156,7 @@ export default {
           // 获取id
           let {id} = this.$route.query;
 
-          let {data} = await this.$axios.get("http://localhost:8888/setting/likes", {
+          let {data} = await this.$axios.get("likes", {
               params:{
                   item_id: id
               }

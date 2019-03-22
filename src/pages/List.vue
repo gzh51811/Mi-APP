@@ -75,7 +75,7 @@ export default {
     });
     if (this.$route.query.path == "/home" || this.$route.query.path == "/tap") {
       let data = await this.$axios
-        .get("http://localhost:8888/setting/findUser", {
+        .get("/setting/findUser", {
           params: {
             type: this.$route.query.type
           }
@@ -92,7 +92,7 @@ export default {
 
     } else if (this.$route.query.path == "/sousuo") {
       let data = await this.$axios
-        .get("http://localhost:8888/setting/findName", {
+        .get("findName", {
           params: {
             name: this.$route.query.name
           }

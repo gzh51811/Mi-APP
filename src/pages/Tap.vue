@@ -22,7 +22,7 @@
     </div>
 </template>
 <script>
-import Vue from "vue"
+
 import Tabright from '../components/Tabright.vue'
 
 export default {
@@ -117,7 +117,7 @@ export default {
             //发起请求
             // console.log(text)
             
-             let data = await this.$axios.get("http://localhost:8888/setting/Tabright",{
+             let data = await this.$axios.get("Tabright",{
                 params:{
                     style:text
                 }
@@ -139,7 +139,7 @@ export default {
   },
     async created(){
         let data= await this.$axios
-        .get("http://localhost:8888/setting/Tabright",{
+        .get("Tabright",{
             params:{
                 style:"新品"
             }

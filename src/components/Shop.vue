@@ -23,7 +23,6 @@ export default {
       list: []
     };
   },
-  props:['tap'],
   methods:{
     todetails(){
       this.$router.push('Details')
@@ -32,12 +31,13 @@ export default {
   props: ["tap"],
   async mounted() {
     let data = await this.$axios
-      .get("http://localhost:8888/setting/findUser", {
+      .get("findUser", {
         params: {
           type: this.tap.type
         }
       })
       .then(function(res) {
+
         return res.data;
       });
     this.list = data.splice(0, 4);
