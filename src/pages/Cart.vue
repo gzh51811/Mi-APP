@@ -1,18 +1,9 @@
 <template>
   <div class="cart">
     <header>
-      <div @click="toxq"><van-icon name="arrow-left" size="0.8378rem"/></div>
+      <div @click="gotoback"><van-icon name="arrow-left" size="0.8378rem"/></div>
       <div><span>购物车</span></div>
       <div><van-icon name="search" size="0.8378rem"/></div>
-      <div @click="gotoback">
-        <van-icon name="arrow-left" size="0.8378rem"/>
-      </div>
-      <div>
-        <span>购物车</span>
-      </div>
-      <div>
-        <van-icon name="search" size="0.8378rem"/>
-      </div>
     </header>
 
     <section class="goLogin">
@@ -41,8 +32,8 @@
 
     <main id="main">
       <ul class="list">
-        <li class="list-item" v-for="(item) in cartlist" :key="item.item_id">
-            <div><v-checkbox class="com"></v-checkbox></div>
+        <li class="list-item" v-for="(item,idx) in cartlist" :key="item.item_id">
+            <div><input type="checkbox" class="com" v-model="selected" @click="select(idx)" :value="idx" /></div>
             <div><img :src="item.item_url" alt></div>
             <div>
                 <p>{{item.item_name}}</p>
@@ -58,56 +49,9 @@
                 </p>
             </div>
             <div><van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/></div>
-        <li class="list-item" v-for="item in cartlist" :key="item.item_id">
-          <div>
-            <v-checkbox class="com"></v-checkbox>
-          </div>
-          <div>
-            <img :src="item.item_url" alt>
-          </div>
-          <div>
-            <p>{{item.item_name}}</p>
-            <p>
-              售价：
-              <span>{{item.item_price}}</span>元
-            </p>
-            <p>
-              <span @click="delNum(item.item_id,item.item_qty)">
-                <i class="el-icon-minus"></i>
-              </span>
-              <input type="text" :value="item.item_qty">
-              <span @click="addNum(item.item_id,item.item_qty)">
-                <i class="el-icon-plus"></i>
-              </span>
-            </p>
-          </div>
-          <div>
-            <van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/>
-          </div>
         </li>
       </ul>
     </main>
-
-    <!-- <ul class="list">
-        <li class="list-item" v-for="(item,idx) in cartlist" :key="item.item_id">
-          <div><van-checkbox class="com" v-model="checked" checked-color="#ff5722"></van-checkbox></div>
-          <div><img :src="item.item_url" alt></div>
-          <div>
-                <p>{{item.item_name}}</p>
-                <p>售价：<span>{{item.item_price}}</span>元</p>
-                <p>
-                    <span @click="delNum(item.item_id,item.item_qty)">
-                        <i class="el-icon-minus"></i>
-                    </span>
-                    <input type="text" :value="item.item_qty">
-                    <span @click="addNum(item.item_id,item.item_qty)">
-                        <i class="el-icon-plus"></i>
-                    </span>
-                </p>
-          </div>
-          <div><van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/></div>
-        </li>
-    </ul>-->
 
     <div class="youlike_img">
       <img src="//i8.mifile.cn/b2c-mimall-media/e95ade2750a7fde92369b416c7d3176d.jpg" alt>
@@ -128,14 +72,8 @@
     <div class="buy">
       <ul>
         <li>
-          <p>
-            共
-            <span>2</span>件 &nbsp;
-            <span>金额：</span>
-          </p>
-          <p>
-            <span>1999</span> 元
-          </p>
+          <p>共<span>{{num}}</span>件 &nbsp;<span>金额：</span></p>
+          <p><span>{{totle}}</span> 元</p>
         </li>
         <li @click="goBuy">
           <span>继续购物</span>
@@ -145,6 +83,7 @@
         </li>
       </ul>
     </div>
+    
   </div>
 </template>
 
@@ -153,11 +92,57 @@
 export default {
   data() {
     return {
-      //   checked: false,
       num: 1,
       likes: [],
-      cartlist: []
-    };
+      cartlist: [],
+      selected: [],
+      totle: 0,
+    }
+  },
+
+  computed:{
+    // 总金额
+    totlePrice(){
+      // 遍历
+      let num = 0;
+      for(var i=0; i<this.selected.length; i++){
+        num = this.cartlist[i].item_qty * this.cartlist[i].item_price + num; 
+      }
+      
+      this.totle = num;
+    },
+
+    // 购物车渲染
+    async showLikes() {
+      let { data } = await this.$axios.get(
+        "http://localhost:8888/setting/youlikes",
+        {
+          params: {
+            item_id: ""
+          }
+        }
+      )
+      .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
+      this.likes = data;
+
+      // 购物车列表渲染
+      await this.$axios
+        .get("http://localhost:8888/setting/cart", {
+          params: {
+            item_id: ""
+          }
+        })
+        .then(res => {
+          this.cartlist = res.data;
+        })
+        .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
+    },
   },
 
   methods: {
@@ -173,9 +158,6 @@ export default {
     goBuy() {
       this.$router.push("/tap");
     },
-    toxq(){
-      this.$router.push("/Details");
-    },
 
     // 购物车点击商品跳转详情页
     goDetails(id) {
@@ -184,18 +166,20 @@ export default {
 
     // 添加数量
     addNum(id, num) {
-      num++;
-      for (var i = 0; i < this.cartlist.length; i++) {
-        if (this.cartlist[i].item_id == id) {
-          this.cartlist[i].item_qty = num;
+        num++;
+        for (var i = 0; i < this.cartlist.length; i++) {
+            if (this.cartlist[i].item_id == id) {
+              this.cartlist[i].item_qty = num;
+            }
         }
-      }
-      this.$axios.get("changeNum", {
-        params: {
-          item_id: id,
-          item_qty: num
-        }
-      });
+        this.$axios.get("http://localhost:8888/setting/changeNum", {
+            params: {
+            item_id: id,
+            item_qty: num
+            }
+        });
+
+        this.totlePrice;
     },
 
     // 减少数量
@@ -208,6 +192,7 @@ export default {
             this.cartlist[i].item_qty = num;
           }
         }
+        
       } else {
         for (let a = 0; a < this.cartlist.length; a++) {
           if (this.cartlist[a].item_id == id) {
@@ -221,6 +206,8 @@ export default {
           item_qty: num
         }
       });
+
+      this.totlePrice;
     },
 
     // 删除商品
@@ -228,23 +215,40 @@ export default {
       for (var i = 0; i < this.cartlist.length; i++) {
         if (this.cartlist[i].item_id === id) {
           this.cartlist.splice(i, 1);
+          
+          for(var j=0; j<this.selected.length; j++){
+            if(j === i){
+              this.selected.splice(j,1);
+            }
+          }
+          this.totlePrice;
         }
       }
       this.$axios.get("delcart", {
         params: {
           item_id: id
         }
-      });
+      })
     },
 
-    seleted(idx) {
-      console.log(idx);
+      // 复选框勾选
+    select(idx){
+      // 获取idx在数组中的位置
+      let index = this.selected.indexOf(idx);
+      if(index >= 0){
+        // 已勾选
+        this.selected.splice(index,1)
+      }else{
+        this.selected.push(idx);
+      }
+
+      this.totlePrice;
     },
 
-    // 购物车渲染
+    // // 购物车渲染
     async showLikes() {
       let { data } = await this.$axios.get(
-        "likes",
+        "http://localhost:8888/setting/youlikes",
         {
           params: {
             item_id: ""
@@ -271,7 +275,8 @@ export default {
           console.log(err)
           this.$router.push('/notfound')
         })
-    }
+    },
+
   },
 
   async created() {
@@ -280,10 +285,12 @@ export default {
       message: "加载中..."
     });
     this.showLikes();
-    // await this.$toast.clear()
   }
-};
+
+}
+
 </script>
+
 
 <style lang="scss" scoped>
 header {

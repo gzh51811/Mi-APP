@@ -23,32 +23,10 @@
     >
 
     <ul class="goodlist">
-      <li>
-        <img
-          class="goodimg"
-          src="https://i8.mifile.cn/b2c-mimall-media/a4d88530d1e6c0882345e44015c3cac2!360x360.jpg"
-          alt
-        >
-        <p>最生活浴巾•Air（1条装）</p>
-        <p class="price">￥69</p>
-      </li>
-      <li>
-        <img
-          class="goodimg"
-          src="https://i8.mifile.cn/b2c-mimall-media/a4d88530d1e6c0882345e44015c3cac2!360x360.jpg"
-          alt
-        >
-        <p>最生活浴巾•Air（1条装）</p>
-        <p class="price">￥69</p>
-      </li>
-      <li>
-        <img
-          class="goodimg"
-          src="https://i8.mifile.cn/b2c-mimall-media/a4d88530d1e6c0882345e44015c3cac2!360x360.jpg"
-          alt
-        >
-        <p>最生活浴巾•Air（1条装）</p>
-        <p class="price">￥69</p>
+      <li v-for="good in goods" :key="good.item_id">
+        <img class="goodimg" :src="good.item_url" alt/>
+        <p>{{good.item_name}}</p>
+        <p class="price">￥{{good.item_price}}</p>
       </li>
     </ul>
   </div>
@@ -58,21 +36,37 @@ export default {
   data() {
     return {
       list: [],
-      listgoods: "商品列表"
+      listgoods: "商品列表",
+      goods: []
     };
   },
   methods: {
     gotoback() {
       this.$router.push("/tap");
     },
+
     sousuo() {
       this.$router.push("/sousuo");
     },
+
     toxq(id){
-      console.log(id)
        this.$router.push({ path: "/details", query: { id }});
+    },
+
+    async showLikes() {
+      let {data} = await this.$axios.get(
+        "http://localhost:8888/setting/youlikes",
+        {
+          params: {
+            item_id: ""
+          }
+        }
+      )
+
+      this.goods = data;
     }
   },
+
   async mounted() {
     console.log(this.$route);
     await this.$toast.loading({
@@ -95,6 +89,7 @@ export default {
         })
       this.list = data;
       this.$toast.clear()
+
     } else if (this.$route.query.path == "/sousuo") {
       let data = await this.$axios
         .get("findName", {
@@ -112,6 +107,10 @@ export default {
       this.list = data;
       this.$toast.clear()
     }
+  },
+
+  created(){
+    this.showLikes();
   }
 };
 </script>

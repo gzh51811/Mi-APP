@@ -22,6 +22,7 @@ import vueBeauty from 'vue-beauty'
 Vue.use(vueBeauty)
 
 
+
 export default {
   components: {
     Xfooter
