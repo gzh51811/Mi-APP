@@ -1,18 +1,9 @@
 <template>
   <div class="cart">
     <header>
-      <div @click="toxq"><van-icon name="arrow-left" size="0.8378rem"/></div>
+      <div @click="gotoback"><van-icon name="arrow-left" size="0.8378rem"/></div>
       <div><span>购物车</span></div>
       <div><van-icon name="search" size="0.8378rem"/></div>
-      <div @click="gotoback">
-        <van-icon name="arrow-left" size="0.8378rem"/>
-      </div>
-      <div>
-        <span>购物车</span>
-      </div>
-      <div>
-        <van-icon name="search" size="0.8378rem"/>
-      </div>
     </header>
 
     <section class="goLogin">
@@ -58,32 +49,6 @@
                 </p>
             </div>
             <div><van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/></div>
-        <li class="list-item" v-for="item in cartlist" :key="item.item_id">
-          <div>
-            <v-checkbox class="com"></v-checkbox>
-          </div>
-          <div>
-            <img :src="item.item_url" alt>
-          </div>
-          <div>
-            <p>{{item.item_name}}</p>
-            <p>
-              售价：
-              <span>{{item.item_price}}</span>元
-            </p>
-            <p>
-              <span @click="delNum(item.item_id,item.item_qty)">
-                <i class="el-icon-minus"></i>
-              </span>
-              <input type="text" :value="item.item_qty">
-              <span @click="addNum(item.item_id,item.item_qty)">
-                <i class="el-icon-plus"></i>
-              </span>
-            </p>
-          </div>
-          <div>
-            <van-icon @click="delGoods(item.item_id)" class="com2" name="delete" size=".64rem"/>
-          </div>
         </li>
       </ul>
     </main>
@@ -118,6 +83,7 @@
         </li>
       </ul>
     </div>
+    
   </div>
 </template>
 
@@ -126,7 +92,6 @@
 export default {
   data() {
     return {
-      //   checked: false,
       num: 1,
       likes: [],
       cartlist: [],
@@ -145,7 +110,39 @@ export default {
       }
       
       this.totle = num;
-    }
+    },
+
+    // 购物车渲染
+    async showLikes() {
+      let { data } = await this.$axios.get(
+        "http://localhost:8888/setting/youlikes",
+        {
+          params: {
+            item_id: ""
+          }
+        }
+      )
+      .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
+      this.likes = data;
+
+      // 购物车列表渲染
+      await this.$axios
+        .get("http://localhost:8888/setting/cart", {
+          params: {
+            item_id: ""
+          }
+        })
+        .then(res => {
+          this.cartlist = res.data;
+        })
+        .catch(err=>{
+          console.log(err)
+          this.$router.push('/notfound')
+        })
+    },
   },
 
   methods: {
@@ -160,9 +157,6 @@ export default {
     },
     goBuy() {
       this.$router.push("/tap");
-    },
-    toxq(){
-      this.$router.push("/Details");
     },
 
     // 购物车点击商品跳转详情页
@@ -219,26 +213,25 @@ export default {
     // 删除商品
     delGoods(id) {
       for (var i = 0; i < this.cartlist.length; i++) {
-          if (this.cartlist[i].item_id === id) {
-            this.cartlist.splice(i, 1);
-            
-            for(var j=0; j<this.selected.length; j++){
-              if(j === i){
-                this.selected.splice(j,1);
-              }
+        if (this.cartlist[i].item_id === id) {
+          this.cartlist.splice(i, 1);
+          
+          for(var j=0; j<this.selected.length; j++){
+            if(j === i){
+              this.selected.splice(j,1);
             }
-            this.totlePrice;
           }
+          this.totlePrice;
         }
-        this.$axios.get("http://localhost:8888/setting/delcart", {
-          params: {
-            item_id: id
-          }
-        })
       }
+      this.$axios.get("http://localhost:8888/setting/delcart", {
+        params: {
+          item_id: id
+        }
+      })
     },
 
-    // 复选框勾选
+      // 复选框勾选
     select(idx){
       // 获取idx在数组中的位置
       let index = this.selected.indexOf(idx);
@@ -252,10 +245,10 @@ export default {
       this.totlePrice;
     },
 
-    // 购物车渲染
+    // // 购物车渲染
     async showLikes() {
       let { data } = await this.$axios.get(
-        "http://localhost:8888/setting/likes",
+        "http://localhost:8888/setting/youlikes",
         {
           params: {
             item_id: ""
@@ -282,7 +275,8 @@ export default {
           console.log(err)
           this.$router.push('/notfound')
         })
-    }
+    },
+
   },
 
   async created() {
@@ -292,8 +286,11 @@ export default {
     });
     this.showLikes();
   }
+
 }
+
 </script>
+
 
 <style lang="scss" scoped>
 header {

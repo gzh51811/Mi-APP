@@ -11,6 +11,7 @@ var {
 router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
+
 // 首页
 router.get('/findUser', async (req, res, next) => {
     let {
@@ -21,6 +22,7 @@ router.get('/findUser', async (req, res, next) => {
     } : {})
     res.send(data);
 });
+
 // 搜索
 router.get('/findName', async (req, res, next) => {
     let {
@@ -32,7 +34,7 @@ router.get('/findName', async (req, res, next) => {
     res.send(data);
 });
 
-
+// 注册
 router.post('/zhuce', async (req, res, next) => {
     let {
         uname,
@@ -53,7 +55,7 @@ router.post('/zhuce', async (req, res, next) => {
     }
 });
 
-
+// 登录
 router.post('/loginUser', async (req, res, next) => {
     let {
         uname,
@@ -88,10 +90,15 @@ router.get('/Tabright',async (req,res,next)=>{
 
 // 购物车youlike
 router.get('/likes', async (req, res, next) => {
-    let {item_id} = req.query
-    console.log(item_id)
+    let {item_id} = req.query;
     let data = await find(`miniItem`, item_id ? {item_id:item_id*1} : {})
-    console.log(data)
+    res.send(data);
+});
+
+// 购物车YouLike底部数据
+router.get('/youlikes', async (req, res, next) => {
+    let {item_id} = req.query;
+    let data = await find(`likes`, item_id ? {item_id:item_id*1} : {})
     res.send(data);
 });
 

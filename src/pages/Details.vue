@@ -23,7 +23,6 @@
         <li @click="goCart">
           <van-icon name="shopping-cart-o" size=".586667rem"/>
           <p>购物车</p>
-          <div>{{num}}</div>
         </li>
         <li>
           <span @click="addCart">加入购物车</span>
@@ -120,11 +119,10 @@
 <script>
 export default {
     data(){
-        return {
-          goods: [],
-          images: [],
-          num: 0
-        }
+      return {
+        goods: [],
+        images: []
+      }
     },
 
     methods:{
@@ -150,6 +148,7 @@ export default {
                   item_price : this.goods.taocan[0].price
               }
           })
+           this.$toast.success('添加购物车成功');
         },
         
         // 购物车页点击商品 -> 详情页
